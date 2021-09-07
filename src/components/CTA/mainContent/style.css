@@ -1,0 +1,98 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
+.discount-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    padding: 5px 0px;
+}
+.discount-slide-container{
+    flex:0 0 66.66%;
+}
+.discount-gif-container{
+    flex: 0 0 33.33%;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+.gif-holder{
+    width: 100%;
+    height: auto;
+    padding: 5px;
+}
+.side-gif-resize{
+    width: 403px ;
+    height: 201px ;
+    border-radius: 16px;
+}
+
+
+
+
+.rec-slider{
+    position: relative;
+}
+
+.rec-carousel-wrapper{
+    display: unset;
+    position: relative;
+    flex-direction: unset;
+}
+
+.rec-pagination{
+    position: absolute;
+    bottom: 20px;
+}
+
+
+
+.discount-slide-container .rec.rec-arrow-left{
+    position: absolute;
+    z-index: 2;
+    right: 10px;
+    
+}
+
+.discount-slide-container .rec.rec-arrow-right{
+    position: absolute;
+    z-index: 2;
+    left: 10px;
+    
+}
+
+.discount-slide-container .rec.rec-arrow{
+    background-color: transparent;
+    color: #fff;
+    box-shadow: none;
+}
+
+.discount-slide-container .rec.rec-arrow:disabled {
+    visibility: hidden;
+}
+
+.discount-slide-container .rec.rec-arrow:hover:active{
+    background-color: transparent;
+
+}
+.discount-slide-container .rec.rec-arrow:hover:enabled, .discount-slide-container .rec.rec-arrow:focus:enabled {
+    color: #fff;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.discount-slide-container .rec.rec-dot{
+    background-color: #fff;
+    box-shadow: none;
+}
+
+.discount-slide-container .rec.rec-dot_active{
+    background-color: #00BFD6;
+
+}
+
+.innerSlidePic{
+    width: 100%;
+    height: 414px;
+    border-radius: 16px;
+}

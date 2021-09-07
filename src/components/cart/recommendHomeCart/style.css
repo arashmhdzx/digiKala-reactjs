@@ -1,0 +1,100 @@
+.commonCarts-attribute{
+    background-color: #fff;
+    border-radius: 8px;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.g-prize-row{
+    display: flex;
+    flex-direction: column;
+}
+
+.minCart{
+    width: 217px;
+    height: 317px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow-y: hidden;
+}
+
+.g-Image-container{
+    width: 180px;
+    height: 180px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.cartImage{
+    width: 170px;
+    height: 170px;
+}
+
+.minCart-wrapper{
+    padding: 5px 15px 16px 15px ;
+}
+
+.g-discription-row{
+    text-align: right;
+    margin-top: 7px;
+    overflow: hidden;
+    max-width: 90%;
+    min-height: 50px;
+    font-size: 12px;
+    line-height: 25px;
+    color: #535353;
+}
+
+.g-prize-row{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.g-oldPrize-container{
+    display: flex;
+    flex-direction: row;
+    direction: ltr;
+}
+.g-newPrize-container{
+    display: flex;
+    flex-direction: row;
+    direction: ltr;
+    font-size: 0.9rem;
+    line-height: 30px;
+    color: #232933;
+    
+}
+.g-newPrize{
+    padding: 0 5px;
+    font-weight: 600;
+}
+.g-oldPrize{
+    text-decoration: line-through;
+    color: #ababab ;
+}
+
+.g-offerDiscount{
+    background-color: #fb3449;
+    color: #fff;
+    border-radius: 16px;
+    width: 32px;
+    height: auto;
+    font-size:15px;
+    padding-left: 2px;
+    padding-top: 2px;
+    margin-right: 10px;
+
+}
+
+.minCart:hover{
+    transform: translateY(-2px);
+    animation-duration: 0.1s;
+
+}
+.minCart:hover{
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 10%);
+}

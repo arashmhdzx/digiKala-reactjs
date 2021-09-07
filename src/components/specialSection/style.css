@@ -1,0 +1,100 @@
+.offerSection{
+    width: 100%;
+}
+.offerContainer{
+    display: flex;
+    flex-direction: row;
+    padding: 35px 16px; 
+}
+
+.rightSection{
+    display: flex;
+    flex-direction: column;
+    width: 170px;
+    justify-content: center;
+    margin: 0 44px;
+}
+
+.incredible-offers-wrapper{
+    margin: 45px 0;
+}
+
+.seeAllBtn{
+    padding: 9px 5px;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 150px;
+    justify-content: center;
+    align-items: center;
+}
+
+.textBtn{
+    color: #fff;
+    font-size: 1rem;
+    padding: 0 10px;
+}
+.leftArrowContainer{
+    justify-content: center;
+    padding-top: 3px;
+}
+.SOfferSlider{
+    width:972px;
+    height: 451px;
+
+}
+
+.SOfferSlider .rec.rec-arrow{
+    border-radius: 0;
+    height: 80px;
+    background-color: #fff;
+    color: #a8a8a8;
+    box-shadow: 1.5px 0 4px 0 rgb(0 0 0 0.15);
+    
+}
+
+.SOfferSlider .rec.rec-arrow-left{
+    border-radius: 8px 0 0 8px;
+}
+
+.SOfferSlider .rec.rec-arrow-right{
+    border-radius: 0 8px 8px 0;
+}
+
+.SOfferSlider .rec.rec-arrow:disabled {
+    visibility: hidden;
+}
+
+.SOfferSlider .rec.rec-arrow:hover:enabled, .SOfferSlider .rec.rec-arrow:focus:enabled {
+    color: #000;
+    background-color: #fff;
+    box-shadow: 0 0 5px 0 #333;
+}
+
+.SOfferSlider .rec-arrow:hover:enabled, .SOfferSlider .rec-arrow:focus:enabled {
+    background-color: transparent;
+    border: none;
+}
+
+.SOfferSlider .rec-arrow-left{
+    position: absolute;
+    z-index: 2;
+    right: 15px;
+    top: 135px;
+    border-radius: 8px 0 0 8px;
+}
+.SOfferSlider .rec.rec-pagination{
+    visibility: hidden;
+}
+
+.SOfferSlider .rec-arrow-right{
+    position: absolute;
+    z-index: 2;
+    left: 15px;
+    top: 135px;
+}
+
+.newClassSo{
+    margin-top: 40px;
+}

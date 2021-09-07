@@ -1,0 +1,57 @@
+.g-singleCart{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: 100%;
+}
+.singleSliderHeader{
+    
+    height: 57px;
+    line-height: 56px;
+    font-weight: 500;
+    color: #6e6e6e;
+    margin: 0 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.singleCartHeader-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.customSingleHeader{
+    padding: 15px 0;
+    font-size: 15px;
+    color: #515151 ;
+    height: auto;
+    overflow: hidden;
+}
+
+.SingleNormalLine{
+    height: 1px;
+    background-color: #F1F1F1;
+    width: 95%;
+}
+
+.g-singleCart .rec.rec-dot{
+    display: none;
+}
+.singleSlider-wrapper{
+    width: 100%;
+    height: 100%;
+}
+.imageLinkWrapper{
+    align-items: center;
+    height: 100%;
+}
+
+.customDisc{
+    width: 100%;
+}
+
+.SliderWrapper{
+    width: 100%;
+}

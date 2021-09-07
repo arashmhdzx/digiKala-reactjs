@@ -1,0 +1,83 @@
+.downerHeader-container{
+    height: auto;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0px 20px;
+    background-color: #fff;
+    box-shadow: 0 7px 8px 0 rgb(0 0 0 / 2%);
+    
+ }
+.maincontainer{
+    height: 47px;
+    margin: 0px;
+    flex-direction: row;
+    display: flex;
+    flex-wrap: nowrap;
+    list-style: none;
+    padding: 0;
+    
+}
+.menu-container{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    padding: 0;
+    
+}
+.category-container{
+    display: inline;
+    
+}
+
+.menu-text{
+    color: #616161;
+    font-size: 12px;
+    font-weight: 300;
+    padding: 10px 2px 0px 0px;
+    
+}
+
+.innerMenu{
+    display: flex;
+    padding: 0px 12px;
+    
+}
+.verticalDown{
+    border-left: 1.5px solid #e0e0e2 ;
+    height: 20px;
+    align-items: center;
+    text-align: center;
+    margin: 10px 12px 0px 0px;
+}
+
+.gps-click{
+    display: flex;
+    flex-direction: row;
+}
+
+.gpsText{
+    color: #616161;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.gpsMenu{
+    display: flex;
+    flex-direction: row;
+}
+
+.menuIcon-container{
+    padding: 10px 0px 10px 5px;
+}
+
+.gps-icon{
+    padding: 10px 10px 0px 0px;
+}
+
+.downerEmptyArea{
+    width: 230px;
+}

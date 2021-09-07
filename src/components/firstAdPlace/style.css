@@ -1,0 +1,21 @@
+.adPlaceWrapper{
+    width: 100%;
+    height: auto;
+    padding: 0 16px ;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin:40px 0 0 0;
+}
+
+.innerAddPlace-Wrapper{
+    padding: 0 8px;
+}
+
+.firstAddPlace-images{
+    width: 293px;
+    height: 219px ;
+    box-shadow: 0 2px 4px 0px rgb(0 0 0 / 10%);
+    cursor: pointer;
+    border-radius: 16px;
+}

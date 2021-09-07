@@ -1,0 +1,140 @@
+.recommendHome-wrapper{
+    width: 100%;
+    height: 437px;
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    
+    
+}
+
+.RightHeaderRH-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.recommendHomeRight-container{
+    width: 72%;
+    background-color: #fff ;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.recommendHomeHeader-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.recommendHomeHeader{
+    display: flex;
+    flex-direction: column;
+    padding: 16px 22px;
+    min-height: 49px;
+
+}
+
+.RHHeader-text{
+    color: #515151 ;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.RHheader-asYouSearched{
+    color:  #515151;
+    font-size: 13px;
+}
+
+.redLine{
+    height: 1px;
+    background-color: #ef5661;
+    width: 35%;
+}
+
+.noLine{
+    height: 1px;
+    width: 3% ;
+}
+
+.normalLine{
+    height: 1px;
+    background-color:  #DFDFDF;
+    width: 60%;
+}
+
+.recommendHomeHeader-lines{
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    padding: 0 20px 0 10px;
+}
+
+
+
+.RH-Slider{
+    width: 100%;
+    height: auto;
+    padding: 10px 0 10px 10px;
+}
+.RH-Slider .rec.rec-arrow{
+    border-radius: 0;
+    height: 80px;
+    background-color: #fff;
+    color: #a8a8a8;
+    box-shadow: 1.5px 0 4px 0 rgb(0 0 0 0.15);
+    
+}
+
+.RH-Slider .rec.rec-arrow-left{
+    border-radius: 8px 0 0 8px;
+}
+
+.RH-Slider .rec.rec-arrow-right{
+    border-radius: 0 8px 8px 0;
+}
+
+.RH-Slider .rec.rec-arrow:disabled {
+    visibility: hidden;
+}
+
+.RH-Slider .rec.rec-arrow:hover:enabled, .RH-Slider .rec.rec-arrow:focus:enabled {
+    color: #000;
+    background-color: #fff;
+    box-shadow: 0 0 5px 0 #333;
+}
+
+.RH-Slider .rec-arrow:hover:enabled, .RH-Slider .rec-arrow:focus:enabled {
+    background-color: transparent;
+    border: none;
+}
+
+.RH-Slider .rec-arrow-left{
+    position: absolute;
+    z-index: 2;
+    right: 0px;
+    top: 65px;
+    border-radius: 8px 0 0 8px;
+    z-index: 99;
+}
+.RH-Slider .rec.rec-pagination{
+    visibility: hidden;
+}
+
+.RH-Slider .rec-arrow-right{
+    position: absolute;
+    z-index: 2;
+    left: 0px;
+    top: 65px;
+}
+.recommendHome-singleCartWrapper{
+    width: 27%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 0 20px;
+    box-shadow: 1px 1px 4px 0 rgb(0 0 0 / 3%);
+    border: 1px solid rgba(0,191,214,.3);
+    overflow: hidden;
+}

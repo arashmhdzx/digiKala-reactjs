@@ -1,0 +1,137 @@
+
+.SpecialCartLinker{
+    width: 324.333px;
+    height: 444px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow-y: hidden;
+}
+
+
+.SpecialCart-container{
+    display: flex;
+    flex-direction: column;
+    padding: 32px 15px 25px 15px;
+    width: auto;
+    height: auto;
+    
+}
+
+.SOImage-container{
+    display: flex;
+    justify-content: center;
+}
+
+.SOImage{
+    align-items: center;
+    text-align: center;
+    width: 180px;
+    height: 180px;
+}
+
+.discription-SOffer{
+    text-align: right;
+    margin-top: 14px;
+    overflow: hidden;
+    max-width: 90%;
+    min-height: 50px;
+    font-size: 13px;
+    line-height: 25px;
+    color: #535353;
+    height: 44px;
+    padding: 0 15px;
+}
+
+
+.cashGift-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.cashGiftText{
+    color:#62666d;
+    font-size: 13px;
+    padding: 0 7px;
+}
+
+.prizeSection{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.upperSectionPrize{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.downSectionPrize{
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.oldPrize{
+    padding-top: 3.5px ;
+    text-decoration: line-through;
+    font-size: 17px;
+    color: #acacac;
+}
+
+.offerPercent-container{
+    
+    background-color: #fb3449;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 20px;
+    padding: 4px 6px 1px;
+    letter-spacing: 0;
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    line-height: 1.375;
+    margin-right: 8px;
+    min-width: 39px;
+    height: 23px;
+    overflow-y: hidden;
+
+}
+
+.currency-wrapper{
+    padding: 2.5px 8px;
+
+}
+
+.newPrize-wrapper{
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.progress-bar{
+    margin-top: 7px;
+    background-color:#d8d8d8;
+    height: 3px;
+    border-radius: 100px ;
+}
+
+.progress-bar-filled{
+    height: 100%;
+    background-color: #fb3449;
+    float: left;
+    border-radius: 100px;
+}
+
+.time-remained{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-top: 8px;
+}
+
+.js-time-countDown{
+    padding: 0 5px;
+}
