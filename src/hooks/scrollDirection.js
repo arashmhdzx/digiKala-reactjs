@@ -1,11 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React ,{useCallback,useEffect,useState} from 'react'
-//import ScrollDirection from "../../hooks/scrollDirection";
-import UpperHeader from './upperHeader/upperHeader'
-import DownerHeader from './downerHeader/downerHeader'
-import './style.css'
+import {useState,useCallback,useEffect} from 'react'
 
-const index = () => {
+const scrollDirection = () => {
     const [y, setY] = useState(window.scrollY);
     const [isShow, setIsShow] =useState(false)
     const handleNavigation = useCallback(
@@ -29,13 +25,8 @@ const index = () => {
         window.removeEventListener("scroll", handleNavigation);
       };
     }, [handleNavigation]);
-    return (
-        <header className="header-container">
-            <UpperHeader />
-            { isShow ? null : <DownerHeader />}
-            
-        </header>
-    )
+    
+    return isShow;
 }
 
-export default index
+export default scrollDirection

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react'
 import Carousel from 'react-elastic-carousel'
 import RecommendHomeCart from '../cart/recommendHomeCart/recommendHomeCart'
@@ -6,15 +7,28 @@ import SingleLoginCart from '../cart/RecommendHome-singleCart/SingleLoginCart/Si
 
 import './style.css'
 
-const RecommendHome = ({  categoryHeader, categoryHeaderSearched , isFirst , loginCart , minDatas , isReverse , slideData}) => {    
-    
+const RecommendHome = ({ isSingleCart,  categoryHeader, categoryHeaderAsYourSearched , loginCart , minDatas , isReverse , slideData , isSeeAllBtn}) => {    
+    // const minCartWidth = (x) =>{
+    //     if (x===true){
+    //         var elements = document.getElementsByClassName("minCart");
+    //         for (var i = 0; i < elements.length; i++) {
+    //             elements[i].style.width=("97%");
+    //         }
+    //     }
+    //  }
     return (
-        <div className={`recommendHome-wrapper ${isFirst ? "" : "reverseFlex" }`}>
-            <div className="recommendHomeRight-container">
+        <div className={`recommendHome `}  >
+        <div className="recommendHome-wrapper" style={{ flexDirection: isReverse ? "row-reverse" : "" }} >
+            <div className="recommendHomeRight-container" style={{width: isSingleCart ? "79%" : "100%",marginLeft: isSingleCart ? "20px" :"0" }}>
                 <div className="recommendHomeHeader-wrapper">
                     <div className="recommendHomeHeader">
-                        <span class="RHHeader-text">{categoryHeader}</span>
-                        {categoryHeaderSearched ? <span class="RHheader-asYouSearched">بر اساس بازدیدهای شما</span> : null}
+                        <div className="sliderHeader-wrapper">
+                            <span class="RHHeader-text">{categoryHeader}</span>
+                            {categoryHeaderAsYourSearched ? <span class="RHheader-asYouSearched">بر اساس بازدیدهای شما</span> : null}
+                        </div>
+                        <a href="/asnj/" className="seeAllSlider-btn" style={{visibility: isSeeAllBtn ? "visible" :"hidden" }}>
+                            < >مشاهده همه</>
+                        </a>
                     </div>
                     <div className="recommendHomeHeader-lines">
                         <span className="redLine"></span>
@@ -23,20 +37,22 @@ const RecommendHome = ({  categoryHeader, categoryHeaderSearched , isFirst , log
                     </div>
                 </div>
                 <div className="RH-Slider">
-                    <Carousel isRTL={true} itemsToShow={4} itemsToScroll={3} verticalMode={false}>
+                    
+                    <Carousel isRTL={true} itemsToShow={4} itemsToScroll={3} itemPadding={[0,5,0,5]} verticalMode={false}>
                         {minDatas.map( data => (
-                            <RecommendHomeCart  link={data.link} imageLink={data.imageLink} newPrize={data.newPrize}
+                            <RecommendHomeCart isFullWidth={!isSingleCart}  link={data.link} imageLink={data.imageLink} newPrize={data.newPrize}
                             oldPrize={data.oldPrize} percent={data.percent} isOffer={data.isOffer} discription={data.discription} />
                         ))}
-                        
-                    
                     </Carousel>
 
                 </div>
             </div>
-            <div  className="recommendHome-singleCartWrapper">
-                { isReverse ? < SingleLoginCart /> : < SingleSlideCart slideData={slideData} /> }
-            </div>
+
+            {isSingleCart && <div className="recommendHome-singleCartWrapper" style={{marginLeft: isReverse ? "20px" : "" , width:isReverse? "21%" :""}}>
+                { isReverse ? < SingleLoginCart /> : < SingleSlideCart slideData={slideData}  /> }
+            </div>}
+
+        </div>
         </div>
     )
 }

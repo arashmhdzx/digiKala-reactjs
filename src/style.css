@@ -4,5 +4,8 @@
     right: 0;
     left: 0;
     top: 0;
-    
+}
+.section-container{
+    width: 100%;
+    padding: 0 15px;
 }

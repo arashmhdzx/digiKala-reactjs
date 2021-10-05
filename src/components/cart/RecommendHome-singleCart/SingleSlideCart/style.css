@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     width: auto;
-    height: 100%;
+    height: 421.44px
+    
 }
 .singleSliderHeader{
     
@@ -14,6 +15,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+.sliderWrapper{
+    max-width: 301px;
+    height: 100%;
+    margin: 0 15px;
 }
 
 .singleCartHeader-container{
@@ -44,14 +50,20 @@
     height: 100%;
 }
 .imageLinkWrapper{
-    align-items: center;
+    align-self: center;
     height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    
 }
+
 
 .customDisc{
     width: 100%;
+    text-overflow: ellipsis;
 }
 
-.SliderWrapper{
-    width: 100%;
+.singleSlider-innerWrapper{
+    width: 301.67px;
+    height: 100%;
 }
