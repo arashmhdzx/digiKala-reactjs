@@ -78,7 +78,7 @@ const footer = ({iconsData,onAdd}) => {
                     <nav className="footer--column-links">
                         <a href="https://" className="footer--faq-table--header">خدمات مشتریان</a>
                         <li><a href="https://" className="footer--faq-table--list">پاسخ به پرسش های متداول</a></li>
-                        <li><a href="https://" className="footer--faq-table--list">رویه های بازگزداندن کالا</a></li>
+                        <li><a href="https://" className="footer--faq-table--list">رویه های بازگرداندن کالا</a></li>
                         <li><a href="https://" className="footer--faq-table--list">شرایط استفاده</a></li>
                         <li><a href="https://" className="footer--faq-table--list">حریم خصوصی</a></li>
                         <li><a href="https://" className="footer--faq-table--list">گزارش باگ</a></li>
@@ -86,7 +86,7 @@ const footer = ({iconsData,onAdd}) => {
                     </nav>
                     <nav className="footer--column-links">
                     <a href="https://" className="footer--faq-table--header">راهنمای خرید از دیجی کالا</a>
-                    <li><a href="https://" className="footer--faq-table--list">نحوه صبت سفارش</a></li>
+                    <li><a href="https://" className="footer--faq-table--list">نحوه ثبت سفارش</a></li>
                     <li><a href="https://" className="footer--faq-table--list">رویه ارسال سفارش</a></li>
                     <li><a href="https://" className="footer--faq-table--list">شیوه های پرداخت</a></li>
 
