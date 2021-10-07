@@ -115,9 +115,9 @@ const footer = ({iconsData,onAdd}) => {
 
                         <div className="footer--email-section flex">
                             <form onSubmit={onSubmit}>
-                                <input type="email" required pattern="[^@]+@[^@]+\.[a-zA-Z]"  onChange={(e) => setEmail(e.target.value)}
+                                <input type="email"  onChange={(e) => setEmail(e.target.value)}
                                 value={email} placeholder="آدرس ایمیل خود را وارد کنید" className="footer--email-box"/>
-                                <input type="submit" style={{backgroundColor: email !== "" && "#ef394e" }} className="footer--email-submitBtn" value="ثبت" />
+                                <input type="submit" style={{backgroundColor: email !== "" && "#ef394e",cursor:email !== "" && "pointer" }} className="footer--email-submitBtn" value="ثبت" />
                             </form>
                         </div>
                         

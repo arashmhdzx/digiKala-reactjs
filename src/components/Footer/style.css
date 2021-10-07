@@ -106,8 +106,6 @@
 }
 .digikala-social{
     width:387px;
-}.footer--column-links{
-
 }
 
 .footer--email-section{
@@ -145,6 +143,7 @@
     height: 48px;
     border-radius: 8px;
     margin-right: 8px;
+    
 }
 
 .footer--faq-table--header{
