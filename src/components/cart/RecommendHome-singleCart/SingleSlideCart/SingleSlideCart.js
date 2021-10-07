@@ -17,12 +17,14 @@ const SingleSlideCart = ({ slideData }) => {
                 <Carousel showArrows={false} itemsToShow={1} itemsToScrol={1}
                 isRTL={true} verticalMode={false} enableAutoPlay={true} autoPlaySpeed={5000}>
                 {slideData.map(e => (
+                    <div className="singleSlider-innerWrapper">
                     <div className="sliderWrapper">
-                        <a href={e.cartLink} className="imageLinkWrapper">
-                            <img src={e.imageSrc} alt={e.imageAlt} className="SOImage " />
-                        </a>
                         <a href={e.cartLink}>
-                            <div className="g-discription-row customDisc">{e.imageDiscription}</div>
+                            <div  className="imageLinkWrapper">
+                                <img src={e.imageSrc} alt={e.imageAlt} className="SOImage " />
+                            </div>
+
+                             <div className="g-discription-row customDisc">{e.imageDiscription}</div>
                         </a>
                         <div className="g-prize-row">
                             <div className="g-oldPrize-container">
@@ -36,6 +38,7 @@ const SingleSlideCart = ({ slideData }) => {
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </div>
                 ))}
                 </Carousel>

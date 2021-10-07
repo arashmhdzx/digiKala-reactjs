@@ -1,24 +1,38 @@
+.recommendHome{
+    width: 98%;
+    padding: 20px 0;
+    border: 0;
+    height: auto;
+
+}
+
+.recommendHome > div{
+    overflow: hidden;
+}
 .recommendHome-wrapper{
     width: 100%;
-    height: 437px;
-    margin: 20px;
+    height: auto;
+    margin-left: 150px;
     display: flex;
     flex-direction: row;
     
-    
 }
+
 
 .RightHeaderRH-container{
     display: flex;
     flex-direction: column;
     width: 100%;
 }
-
+.fullWidthSlider-wrapper{
+    width: 100%;
+}
 .recommendHomeRight-container{
     width: 72%;
+    height: auto;
     background-color: #fff ;
     border-radius: 8px;
-    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 0.1);
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 10%);
     display: flex;
     flex-direction: column;
 }
@@ -30,10 +44,26 @@
 }
 .recommendHomeHeader{
     display: flex;
-    flex-direction: column;
-    padding: 16px 22px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 22px 16px 50px;
     min-height: 49px;
 
+}
+.sliderHeader-wrapper{
+    display: flex;
+    flex-direction: column;
+    
+}
+.seeAllSlider-btn{
+    color: #515151;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.seeAllSlider-btn:hover{
+    color:#1CA2BD;
 }
 
 .RHHeader-text{
@@ -75,8 +105,9 @@
 
 .RH-Slider{
     width: 100%;
-    height: auto;
+    height: fit-content;
     padding: 10px 0 10px 10px;
+
 }
 .RH-Slider .rec.rec-arrow{
     border-radius: 0;
@@ -128,13 +159,19 @@
     left: 0px;
     top: 65px;
 }
+
+.RH-Slider .rec-item-wrapper{
+    width: 100%;
+}
+
 .recommendHome-singleCartWrapper{
     width: 27%;
     height: 100%;
     background-color: #fff;
     border-radius: 8px;
-    margin: 0 20px;
     box-shadow: 1px 1px 4px 0 rgb(0 0 0 / 3%);
     border: 1px solid rgba(0,191,214,.3);
     overflow: hidden;
+
 }
+

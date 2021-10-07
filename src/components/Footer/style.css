@@ -1,0 +1,213 @@
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-container{
+    background-color: #fff;
+    max-width: 1260px;
+    padding: 35px 22px 0;
+}
+
+
+.footerHeader-container{
+    line-height: 217%;
+    color: #424750;
+    margin-top: 10px;
+    justify-content: space-between;
+        
+}
+
+.footerHeader-container.span{
+    line-height: 217%;
+    color: #424750;
+    margin-top: 10px;
+}
+
+.toTop-btn{
+    cursor: pointer;
+    white-space: nowrap;
+    border: 1px solid #a1a3a8;
+    border-radius: 8px;
+    padding: 5px 16px;
+}
+.toTop-text{
+    color: #a1a3a8;
+}
+.contact-info-container{
+    font-size: 13px;
+    line-height: 217%;
+    color: #424750;
+    margin-top: 10px;
+    align-items: center;
+}
+.faq-phone{
+    margin-right: 9px;
+    letter-spacing: 3px;
+}
+.Digikala-features{
+    display: flex ;
+    width: 100%;
+    padding: 28px 0 ;
+    flex-direction: row ;
+    justify-content: space-around;
+}
+.footer-featuresIcon{
+    display: flex;
+    flex-direction: column;
+    align-items: center ;
+    justify-content: center;
+}
+
+.featureIcon-img{
+    width: 54px;
+    height: 54px;
+}
+
+.featureIcon-title{
+    font-size: .857rem;
+    color: #424750;
+}
+.Line {
+    height: 1.2px;
+    background-color:  #DFDFDF;
+}
+
+
+.footer-faq-container{
+    display : flex;
+    flex-direction:row;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 22px;
+}
+.footer--faq-table--header{
+    font-size: 1rem;
+    line-height: 34.4px;
+    color: #424750;
+    user-select: none;
+    font-weight: 600;
+    display: block;
+}
+
+.footer--faq-table--list{
+    font-size: 1rem;
+    line-height: 215%;
+    color: #81858b;
+    font-weight: 300;
+}
+.socialIco-container{
+    display: flex;
+    margin:12px 0 20px;
+}
+
+.socialIco-container a {
+    margin-left: 24px;
+}
+.digikala-social{
+    width:387px;
+}
+
+.footer--email-section{
+    width:100%;
+    flex-wrap: nowrap;
+}
+
+.footer--email-box{
+    width: 65%;
+    color:#81858b;
+    background-color:#f0f0f1;
+    border-radius:8px;
+    border: none;
+    font-size: 0.9rem;
+    line-height: 215%;
+    padding: 8px 12px;
+    letter-spacing: -.8px;
+    
+    
+}
+
+.footer--email-box:active{
+    border: none;
+}
+
+.footer--email-box:focus{
+    outline: none;
+}
+
+.footer--email-submitBtn{
+    color:#fff;
+    background-color:#e0e0e2;
+    border: none;
+    width: 57px;
+    height: 48px;
+    border-radius: 8px;
+    margin-right: 8px;
+    
+}
+
+.footer--faq-table--header{
+    margin-bottom: 12px;
+}
+
+.app-linker-container{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 16px 20px;
+    user-select: none;
+    background-color: #3c4b6d;
+    margin: 28px 0;
+    border-radius: 8px;
+    height:44px;
+}
+
+.app-linker-icon{
+    width: 44px;
+    height: 44px;
+    margin-left: 15px;
+    background-image: url("https://www.digikala.com/static/files/59d36e01.svg");
+}
+
+.app-linker-right{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.app-linker-DApp-title{
+    font-size: 1.286rem;
+    color: #fff;
+    font-weight: 500;
+    overflow: hidden;
+    margin-top: auto;
+    margin-bottom: auto;
+
+}
+
+.footer--market-icon{
+    margin-right: 16px;
+    width:"150px";
+    height:"44px";
+    overflow: hidden;
+    
+
+}
+
+
+.footer--market-icon-etc{
+    width: 44px;
+    height: 44px;
+    display: flex;
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    margin-right:16px ;
+    font-weight: 600;
+}
+.asdsa{
+    display:flex;
+    flex-wrap: nowrap;
+}

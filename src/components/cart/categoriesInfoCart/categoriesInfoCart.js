@@ -1,9 +1,31 @@
-import React from 'react'
+import React from 'react';
+import Laptop from './icons/laptop.svg'
 import './style.css'
-const categoriesInfoCart = () => {
+
+
+const categoriesInfoCart = ({ data }) => {
+    const e2p = (num) => num.replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
     return (
-        <div>
-            
+        <div className="category-cart-container">
+            {
+                data.map( e => (
+                    <a href={e.link} className="single-categoryCart-wrapper">
+                        <div className="asd">
+
+                            <div className="category-space-between">
+                                <div className="image-ico-container">
+                                    <img src={Laptop}  alt=""  classname="category-ico" />
+                                </div>
+                                <div className="categories-disc" style={{color:"#000"}}>{e.discription}</div>
+                            </div>
+
+                            <div>
+                                <div className="categories-quantity" style={{color:"#00bfd6"}}> {`+ ${e2p(e.items)} کالا`} </div>
+                            </div>
+                        </div>
+                    </a>
+                ))
+          }
         </div>
     )
 }

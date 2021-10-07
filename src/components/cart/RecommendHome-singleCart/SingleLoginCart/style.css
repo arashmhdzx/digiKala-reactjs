@@ -1,0 +1,62 @@
+.singleLoginCart-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px 24px ;
+}
+
+.single-login-box__title{
+    color: #232933;
+    margin-top: 24px;
+    font-weight: 350;
+    font-size: 1.143rem;
+    line-height: 34px;
+
+}
+.single-login-box__text{
+    color: #62666d;
+    margin: 24px auto;
+    font-size: 12px;
+    font-size: 1rem;
+    line-height: 23px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.loginbox-icon{
+    padding: 0 10px;
+}
+
+.loginBtnCart{
+    width: 205px;
+    height: 76px;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    background-color: #ef394e;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginBtnCart:active{
+    background-color: #E3122A;
+}
+
+.loginBtn-text{
+    width: 120px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 9px 12px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.loginbox-underBtn{
+    color: #81858b;
+    margin-top: 4px;
+    font-size: .714rem;
+    line-height: 30px;
+}

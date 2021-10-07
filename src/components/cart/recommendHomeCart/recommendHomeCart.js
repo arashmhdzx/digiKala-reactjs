@@ -1,14 +1,14 @@
 import React from 'react'
 import './style.css'
 
-const recommendHomeCart = ({ imageLink , newPrize , oldPrize , isOffer, link , discription , percent }) => {
+const recommendHomeCart = ({ imageLink ,isFullWidth , newPrize , oldPrize , isOffer, link , discription , percent }) => {
 
     const e2p = (num) => num.replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
     
     
     return (
         
-        <div className="minCart">
+        <div className="minCart" style={{width : isFullWidth && "98%"}} >
             
             <a href={link}  >
                 <div className="g-minCart minCart-wrapper">

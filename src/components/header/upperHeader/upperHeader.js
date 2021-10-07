@@ -4,9 +4,12 @@ import {ReactComponent as DigikalaIco} from './icons/Digikala.svg'
 import UserPic from './icons/user-6767.png'
 import './style.css'
 
-const UpperHeader = () => {
+const UpperHeader = ({shadow}) => {
+
+    const shadowdata = "0 7px 8px 0 rgb(0 0 0 / 0.4)";
+
     return (
-        <div className="upperHeader-container" > {/* style={isShow ? { display: 'none' } : {} } */}
+        <div className="upperHeader-container" style={{boxShadow: shadow ? shadowdata : ""}} > {/* style={isShow ? { display: 'none' } : {} } */}
    
                 <div className="logo-container">
                     <a href="https://www.digikala.com/" className="logo" alt="دیجی کالا">

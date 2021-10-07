@@ -1,8 +1,12 @@
+import React,{useState} from 'react'
+
 import NavBar from "./components/header/NavBar";
 import Cta from "./components/CTA/Cta"
 import SpecialOffer from "./components/specialSection/Special"
 import AdPlace from "./components/firstAdPlace/AdPlace";
 import RecommendHome from "./components/minSliders/RecommendHome";
+import CategoriesInfo from "./components/CategoriesInfo/Categories";
+import Footer from "./components/Footer/footer";
 
 import './style.css'
 
@@ -10,6 +14,16 @@ const App = () => {
   const firstTheme = '#EF394E';
   const secondTheme = '#6BB927';
   const newClassSO = "newClassSo"
+
+  const [registeredEmails,setRegisteredEmails] = useState([
+    {
+      email:"arashft.am@gmail.com"
+    }
+  ])
+
+  const regNewEmail=(data)=> {
+    setRegisteredEmails([...registeredEmails,data])
+  }
 
   const minDatas = [
     {
@@ -110,7 +124,7 @@ const App = () => {
       newPrize:"32,000",
       isOffer:false
     }
-  ]
+  ];
  
   const firstSlideImagesData = [
     {
@@ -245,7 +259,7 @@ const App = () => {
       newPrize:"65,000",
       cartLink:"/product/dkp-2388909/کتاب-شیاطین-جن-زدگان-اثر-فیودور-داستایفسکی-انتشارات-نیلوفر"
     }
-  ]
+  ];
 
   const firstAdImageLinks = [
     {
@@ -270,18 +284,144 @@ const App = () => {
       alt:"یک پذیرایی ساده"
     }
 
-  ]
+  ];
+
+  const secondAdImageLinks = [
+    {
+      links:"https://www.digikala.com/product-list/plp_9025943/?&promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D9%87%D9%88%D9%85+%D9%BE%D9%84%D8%A7%D8%B3&promo_position=home_top&promo_creative=80212&bCode=80212",
+      imageSrc:"https://dkstatics-public.digikala.com/digikala-adservice-banners/d7b12a88edb0657fde2fab4d0a822828c40088e5_1631813593.jpg?x-oss-process=image/quality,q_80",
+      alt:"پارتنرشیپ - چای احمد"
+    },
+    {
+      links:"https://www.digikala.com/product-list/plp_9025943/?&promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D9%87%D9%88%D9%85+%D9%BE%D9%84%D8%A7%D8%B3&promo_position=home_top&promo_creative=80212&bCode=80212",
+      imageSrc:"https://dkstatics-public.digikala.com/digikala-adservice-banners/2338497fe8753a4aba32abb8946a1afb441a3650_1631597668.jpg?x-oss-process=image/quality,q_80",
+      alt:"چرم آرا"
+    }
+  ];
+
+  const categoriesData = [
+    {
+      svgPath : "../src/components/cart/categoriesInfoCart/icons/laptop.svg",
+      link:"/main/electronic-devices/?entry=homepage_year_end",
+      discription:"کالای دیجیتال",
+      items:"913000"
+    },{
+      svgPath : "../src/components/cart/categoriesInfoCart/icons/tool.svg",
+      link:"/main/electronic-devices/?entry=homepage_year_end",
+      discription:"خودرو، ابزار و تجهیزات صنعتی",
+      items:"152000"
+    },{
+      svgPath : "../src/components/cart/categoriesInfoCart/icons/t-shirt.svg",
+      link:"/main/electronic-devices/?entry=homepage_year_end",
+      discription:"مد و پوشاک",
+      items:"677000"
+    },{
+      svgPath : "../src/components/cart/categoriesInfoCart/icons/baby.svg",
+      link:"/main/electronic-devices/?entry=homepage_year_end",
+      discription:"اسباب بازی، کودک و نوزاد",
+      items:"70000"
+    },{
+      svgPath : "../src/components/cart/categoriesInfoCart/icons/grocery.svg",
+      link:"/main/electronic-devices/?entry=homepage_year_end",
+      discription:"کالاهای سوپرمارکتی",
+      items:"62000"
+    },{
+      svgPath : "../src/components/cart/categoriesInfoCart/icons/cardiogram.svg",
+      link:"/main/electronic-devices/?entry=homepage_year_end",
+      discription:"زیبایی و سلامت",
+      items:"102000"
+    },{
+      svgPath : "../src/components/cart/categoriesInfoCart/icons/armchair.svg",
+      link:"/main/electronic-devices/?entry=homepage_year_end",
+      discription:"خانه و آشپزخانه",
+      items:"478000"
+    },{
+      svgPath : "../src/components/cart/categoriesInfoCart/icons/pen.svg",
+      link:"/main/electronic-devices/?entry=homepage_year_end",
+      discription:"کتاب، لوازم تحریر و هنر",
+      items:"267000"
+    },{
+      svgPath : "../src/components/cart/categoriesInfoCart/icons/camp.svg",
+      link:"/main/electronic-devices/?entry=homepage_year_end",
+      discription:"ورزش و سفر",
+      items:"40000"
+    },{
+      svgPath : "../src/components/cart/categoriesInfoCart/icons/magic-carpet.svg",
+      link:"/main/electronic-devices/?entry=homepage_year_end",
+      discription:"محصولات بومی و محلی",
+      items:"2000"
+    }
+  ];
+
+const footerIcons = [{
+    link:"/faq/36",
+    svgLink:"https://www.digikala.com/static/files/8f570b58.svg",
+    title:"امکان تحویل اکسپرس"
+  },{
+    link:"/faq/36",
+    svgLink:"https://www.digikala.com/static/files/22414818.svg",
+    title:"امکان پرداخت در محل"
+  },{
+    link:"/faq/36",
+    svgLink:"https://www.digikala.com/static/files/a9286d2f.svg",
+    title:"۷ روز هفته، ۲۴ ساعته"
+  },{
+    link:"/faq/36",
+    svgLink:"https://www.digikala.com/static/files/514926b1.svg",
+    title:"۷ روز ضمانت بازگشت کالا"
+  },{
+    link:"/faq/36",
+    svgLink:"https://www.digikala.com/static/files/fdb293e6.svg",
+    title:"ضمانت اصل بودن کالا"
+  }];
+
+
+
 
   return (
     <div className="appContainer">
       <NavBar />
-      <Cta />
-      <SpecialOffer theme={firstTheme} slideData={firstSlideImagesData} />
-      <AdPlace links={firstAdImageLinks} />
-      <SpecialOffer isFirst={true} newClass={newClassSO} theme={secondTheme} slideData={firstSlideImagesData} />
-      <RecommendHome categoryHeader={"فرآورده‌های منجمد و یخچالی"} categoryHeaderSearched={true}
-      minDatas={minDatas} slideData={ firstSlideImagesData} />
+      
+      <main className="" >
+        <Cta />
+        
+        <SpecialOffer theme={firstTheme} slideData={firstSlideImagesData} />
+        
+        <AdPlace links={firstAdImageLinks} topMargin={"40px"} />
+        
+        <SpecialOffer isFirst={true} newClass={newClassSO} theme={secondTheme} slideData={firstSlideImagesData} />
+        <section className="section-container">
+          <RecommendHome categoryHeader={"فرآورده‌های منجمد و یخچالی"} categoryHeaderAsYourSearched={true}
+          minDatas={minDatas} slideData={ firstSlideImagesData}  isSingleCart={true} isReverse={false} isSeeAllBtn={false} />
+  
+          <CategoriesInfo ctgData={categoriesData} />
+    
+          <RecommendHome categoryHeader={"لپتاپ"} categoryHeaderAsYourSearched={true}
+          minDatas={minDatas} slideData={ firstSlideImagesData}  isSingleCart={true} isReverse={true} isSeeAllBtn={false} />
+  
+          <AdPlace links={firstAdImageLinks} topMargin={"40px"} />
+    
+          <RecommendHome categoryHeader={"عینک"} categoryHeaderAsYourSearched={true} minDatas={minDatas}
+          slideData={firstAdImageLinks} isReverse={false} isSeeAllBtn={true} isSingleCart={false} />
+  
+          <RecommendHome categoryHeader={"کفش مردانه ورزشی"} categoryHeaderAsYourSearched={true} minDatas={minDatas}
+          slideData={firstAdImageLinks} isReverse={false} isSeeAllBtn={true} isSingleCart={false} />
+  
+          <AdPlace links={secondAdImageLinks} topMargin={"40px"} />
+        
+          <RecommendHome categoryHeader={"محصولات پربازدید اخیر"} categoryHeaderAsYourSearched={false} minDatas={minDatas}
+          slideData={firstAdImageLinks} isReverse={false} isSeeAllBtn={true} isSingleCart={false} />
+  
+          <RecommendHome categoryHeader={"منتخب جدیدترین کالاها"} categoryHeaderAsYourSearched={false} minDatas={minDatas}
+          slideData={firstAdImageLinks} isReverse={false} isSeeAllBtn={true} isSingleCart={false} />
 
+          <RecommendHome categoryHeader={"محصولات پرفروش اخیر"} categoryHeaderAsYourSearched={false} minDatas={minDatas}
+          slideData={firstAdImageLinks} isReverse={false} isSeeAllBtn={true} isSingleCart={false} />
+        </section>
+        
+        <Footer iconsData={footerIcons} onAdd={regNewEmail} />
+        
+      </main>
     </div>
   );
 }
