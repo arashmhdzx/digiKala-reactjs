@@ -30,7 +30,6 @@
 }
 .category-container{
     display: inline;
-    
 }
 
 .menu-text{
@@ -41,10 +40,20 @@
     
 }
 
+
+.menuIcon-container
+
+.nav-underline-amination:hover {
+    --d: 5%;
+}
 .innerMenu{
     display: flex;
     padding: 0px 12px;
-    
+    background: linear-gradient(#EE384E 0 0) bottom /var(--d, 0) 2px no-repeat;
+    transition:0.5s;
+}
+.innerMenu:hover{
+    --d: 80%;
 }
 .verticalDown{
     border-left: 1.5px solid #e0e0e2 ;

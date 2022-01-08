@@ -1,0 +1,62 @@
+[
+    {
+      "svgPath" : "../src/components/cart/categoriesInfoCart/icons/laptop.svg",
+      "link": "/main/electronic-devices/?entry=homepage_year_end",
+      "discription": "کالای دیجیتال",
+      "items": "913000"
+    },
+    {
+      "svgPath" : "../src/components/cart/categoriesInfoCart/icons/tool.svg",
+      "link": "/main/electronic-devices/?entry=homepage_year_end",
+      "discription": "خودرو، ابزار و تجهیزات صنعتی",
+      "items": "152000"
+    },
+    {
+      "svgPath" : "../src/components/cart/categoriesInfoCart/icons/t-shirt.svg",
+      "link": "/main/electronic-devices/?entry=homepage_year_end",
+      "discription": "مد و پوشاک",
+      "items": "677000"
+    },
+    {
+      "svgPath" : "../src/components/cart/categoriesInfoCart/icons/baby.svg",
+      "link": "/main/electronic-devices/?entry=homepage_year_end",
+      "discription": "اسباب بازی، کودک و نوزاد",
+      "items": "70000"
+    },
+    {
+      "svgPath" : "../src/components/cart/categoriesInfoCart/icons/grocery.svg",
+      "link": "/main/electronic-devices/?entry=homepage_year_end",
+      "discription": "کالاهای سوپرمارکتی",
+      "items": "62000"
+    },
+    {
+      "svgPath" : "../src/components/cart/categoriesInfoCart/icons/cardiogram.svg",
+      "link": "/main/electronic-devices/?entry=homepage_year_end",
+      "discription": "زیبایی و سلامت",
+      "items": "102000"
+    },
+    {
+      "svgPath" : "../src/components/cart/categoriesInfoCart/icons/armchair.svg",
+      "link": "/main/electronic-devices/?entry=homepage_year_end",
+      "discription": "خانه و آشپزخانه",
+      "items": "478000"
+    },
+    {
+      "svgPath" : "../src/components/cart/categoriesInfoCart/icons/pen.svg",
+      "link": "/main/electronic-devices/?entry=homepage_year_end",
+      "discription": "کتاب، لوازم تحریر و هنر",
+      "items": "267000"
+    },
+    {
+      "svgPath" : "../src/components/cart/categoriesInfoCart/icons/camp.svg",
+      "link": "/main/electronic-devices/?entry=homepage_year_end",
+      "discription": "ورزش و سفر",
+      "items": "40000"
+    },
+    {
+      "svgPath" : "../src/components/cart/categoriesInfoCart/icons/magic-carpet.svg",
+      "link": "/main/electronic-devices/?entry=homepage_year_end",
+      "discription": "محصولات بومی و محلی",
+      "items": "2000"
+    }
+]
