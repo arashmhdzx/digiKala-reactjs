@@ -57,5 +57,11 @@ const RecommendHome = ({ isSingleCart,  categoryHeader, categoryHeaderAsYourSear
     )
 }
 
+RecommendHome.defaultProps ={
+    isSingleCart:false,
+    isSeeAllBtn:true,
+    isReverse:false,
+    categoryHeaderAsYourSearched:false
+}  
 
 export default RecommendHome

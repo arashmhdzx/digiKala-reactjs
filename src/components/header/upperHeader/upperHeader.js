@@ -10,7 +10,7 @@ const UpperHeader = ({shadow}) => {
 
     return (
         <div className="upperHeader-container" style={{boxShadow: shadow ? shadowdata : ""}} > {/* style={isShow ? { display: 'none' } : {} } */}
-   
+
                 <div className="logo-container">
                     <a href="https://www.digikala.com/" className="logo" alt="دیجی کالا">
                         <DigikalaIco />
