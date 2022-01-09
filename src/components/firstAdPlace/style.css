@@ -3,6 +3,7 @@
     height: auto;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     flex-wrap: nowrap;
 }
 
@@ -11,7 +12,7 @@
 }
 
 .firstAddPlace-images{
-    width: 100%;
+    width: 98%;
     height: auto ;
     box-shadow: 0 2px 4px 0px rgb(0 0 0 / 10%);
     cursor: pointer;

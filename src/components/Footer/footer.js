@@ -34,8 +34,8 @@ const footer = ({iconsData,onAdd}) => {
       }
 
     return (
-        <footer className="footer-container">
-            <div className="innner-footer-container">
+        <div className="footer-container">
+            <div className="inner-footer-container">
                 <div className="footerHeader-container flex-row">
                     <img src={"https://www.digikala.com/static/files/2a4774d7.svg"} width="113px" height="30px" alt="" loading="lazy" />
                     <div className="toTop-btn" onClick={scrollToTop}>
@@ -157,7 +157,7 @@ const footer = ({iconsData,onAdd}) => {
 
                 </div>
             </div>
-        </footer>
+        </div>
     )
 }
 

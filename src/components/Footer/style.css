@@ -5,11 +5,13 @@
 
 .footer-container{
     background-color: #fff;
-    max-width: 1260px;
-    padding: 35px 22px 0;
+    width: 100%;
+    
 }
 
-
+.inner-footer-container{
+    padding: 35px 22px 0;
+}
 .footerHeader-container{
     line-height: 217%;
     color: #424750;

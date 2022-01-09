@@ -13,9 +13,9 @@ const DownerHeader = () => {
     
     return (
         <div className="downerHeader-container" >
-            <ul className="maincontainer">
+            
 
-                <li className="menu-section">
+                <div className="menu-section">
 
                     <ul className="menu-container">
 
@@ -78,19 +78,19 @@ const DownerHeader = () => {
                            </div>
                         </li>
                     </ul>
-                </li>
+                </div>
 
-                <li className="downerEmptyArea"></li>
+                {/* <li className="downerEmptyArea"></li> */}
 
-                <li className="GPS-container">
+                <div className="GPS-container">
                     <a className="gpsMenu" href="/">
                         <p className="menu-text">لطفا شهر و استان خود را انتخاب کنید</p>
                         <div className="gps-icon">
                             <Pin />
                         </div>
                     </a>
-                </li>
-            </ul>
+                </div>
+            
         </div>
     )
 }

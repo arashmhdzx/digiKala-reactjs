@@ -1,6 +1,6 @@
 .downerHeader-container{
     height: auto;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-wrap: nowrap;
     width: 100%;
     display: flex;
