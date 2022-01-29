@@ -34,7 +34,7 @@ const index = () => {
         };
     }, [handleNavigation]);
     return ( 
-        <header className = "header-container" >
+        <header className = "header-container header-shadow" >
         
         <UpperHeader / > {
             isShow ? null : < DownerHeader / >

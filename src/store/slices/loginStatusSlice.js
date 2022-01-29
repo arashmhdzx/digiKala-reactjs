@@ -3,7 +3,7 @@ import {
 } from '@reduxjs/toolkit'
 
 const initialState ={ 
-    value : false,
+    logged : false,
 }
 
 
@@ -12,10 +12,10 @@ export const loginStatusSlice = createSlice({
     initialState,
     reducers: {
         logIn: (state) => {
-            state.value = true;
+            state.logged = true;
         },
         logOut: (state) => {
-            state.value = false
+            state.logged = false
         },
         
     },

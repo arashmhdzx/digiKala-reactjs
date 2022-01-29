@@ -12,7 +12,7 @@
     flex-direction: column;
     width: 170px;
     justify-content: center;
-    margin: 0 44px;
+    padding: 0 44px;
 }
 
 .incredible-offers-wrapper{
@@ -25,7 +25,7 @@
     border-radius: 10px;
     display: flex;
     flex-direction: row-reverse;
-    width: 150px;
+    width: 100%;
     justify-content: center;
     align-items: center;
 }

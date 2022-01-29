@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { useNavigate } from 'react-router-dom'
 
 import {ReactComponent as ShoppingCart } from './icons/shopping-cart.svg'
 import {ReactComponent as DigikalaIco} from './icons/Digikala.svg'
@@ -10,15 +10,15 @@ import './style.css'
 const UpperHeader = ({shadow}) => {
 
     const shadowdata = "0 7px 8px 0 rgb(0 0 0 / 0.4)";
-    
+    const navigate = useNavigate()
     return (
         
         <div className="upperHeader-container" style={{boxShadow: shadow ? shadowdata : ""}} > {/* style={isShow ? { display: 'none' } : {} } */}
             <div className='search-wrapper'>
                 <div className="logo-container">
-                    <a href="https://www.digikala.com/" className="logo" alt="دیجی کالا">
+                    <div onClick={()=>navigate("/")} className="logo" alt="دیجی کالا">
                         <DigikalaIco />
-                    </a>
+                    </div>
                 </div>
                 <div className="search-container">
                     {/*<span class="fa fa-search form-control-feedback"></span>*/}
@@ -31,7 +31,7 @@ const UpperHeader = ({shadow}) => {
                 
             <div className="login-container">
                 
-                <div className="loginSection">
+                <div onClick={() => navigate('/user/login-register')} className="loginSection">
                     <div className="userPic-container">
                         <img src={UserPic} className="userPic" alt=""></img>
                     </div>
@@ -40,6 +40,7 @@ const UpperHeader = ({shadow}) => {
                     </div>
                     
                 </div>
+
                 <div className="vertical"></div>
                 <a href="/cart" className="shoppingCart" >
                     <ShoppingCart />
