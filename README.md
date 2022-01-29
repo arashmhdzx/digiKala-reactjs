@@ -1,4 +1,4 @@
-# digikala clone
+# Digikala clone
 made with react
 
 see demo website at:
