@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 
 import {ReactComponent as ShoppingCart } from './icons/shopping-cart.svg'
 import {ReactComponent as DigikalaIco} from './icons/Digikala.svg'
@@ -10,7 +11,10 @@ import './style.css'
 const UpperHeader = ({shadow}) => {
 
     const shadowdata = "0 7px 8px 0 rgb(0 0 0 / 0.4)";
-    const navigate = useNavigate()
+    
+    const navigate = useNavigate();
+    const isLogged = useSelector(state => state.loginStatus.logged)
+    
     return (
         
         <div className="upperHeader-container" style={{boxShadow: shadow ? shadowdata : ""}} > {/* style={isShow ? { display: 'none' } : {} } */}
@@ -30,7 +34,11 @@ const UpperHeader = ({shadow}) => {
             </div>
                 
             <div className="login-container">
-                
+                { isLogged ? 
+                <div className=''>
+                    <img src={UserPic} className="userPic" alt=""></img>
+                </div>
+                : 
                 <div onClick={() => navigate('/user/login-register')} className="loginSection">
                     <div className="userPic-container">
                         <img src={UserPic} className="userPic" alt=""></img>
@@ -39,7 +47,7 @@ const UpperHeader = ({shadow}) => {
                         <p className="usertext">ورود به حساب کاربری</p>
                     </div>
                     
-                </div>
+                </div>}
 
                 <div className="vertical"></div>
                 <a href="/cart" className="shoppingCart" >

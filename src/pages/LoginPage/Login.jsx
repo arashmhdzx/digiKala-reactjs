@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { userIDTokenHandler } from '../../store/slices/tokenSlice';
 import { idHandler } from '../../store/slices/newUser'
 
-
 import './loginStyles.css'
 
 const Login = () => {
@@ -65,7 +64,7 @@ const Login = () => {
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
-
+        userName === "" && alert("vallah el azim you are koor,write something");
         if (charRegEx.test(userName)) {
             if (emailRegEx.test(userName)) {
                 
