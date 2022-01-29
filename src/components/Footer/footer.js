@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable jsx-a11y/alt-text */
-import React,{useState} from 'react'
+import React,{ useState,useEffect } from 'react'
 
 
 import InstagramBNW from "./icons/BNW/instagram.svg"
@@ -17,25 +17,31 @@ import Aparat from "./icons/aparat.svg"
 
 import "./style.css"
 
-const footer = ({iconsData,onAdd}) => {
+const footer = ({ iconsData }) => {
 
     const scrollToTop = () => {
         window.scrollTo({
-          top: 0,
-          behavior: "smooth"
+            top: 0,
+            behavior: "smooth"
         });
-      };
-      
-      const[email,setEmail] = useState("");
+    }; 
 
-      const onSubmit = () => {
-          onAdd(email);
-          setEmail("");
-      }
+    const[email,setEmail] = useState("");
+
+    const onSubmit = async(e) => {
+            e.preventDefault();
+            const emailData = { data : email }
+            await fetch("http://localhost:8000/discountRegisterEmails",{
+                method:"POST",
+                headers:{ "Content-Type":"application/json" },
+                body : JSON.stringify(emailData)
+            })
+            
+    }
 
     return (
-        <footer className="footer-container">
-            <div className="innner-footer-container">
+        <div className="footer-container">
+            <div className="inner-footer-container">
                 <div className="footerHeader-container flex-row">
                     <img src={"https://www.digikala.com/static/files/2a4774d7.svg"} width="113px" height="30px" alt="" loading="lazy" />
                     <div className="toTop-btn" onClick={scrollToTop}>
@@ -157,7 +163,7 @@ const footer = ({iconsData,onAdd}) => {
 
                 </div>
             </div>
-        </footer>
+        </div>
     )
 }
 

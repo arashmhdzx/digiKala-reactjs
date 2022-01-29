@@ -1,0 +1,22 @@
+{
+    "accounts": [
+        {
+            "id": "9372317761",
+            "fName":"آرش",
+            "lName":"مهدیزاده",
+            "email": "arash.mehdiizadeh@gmail.com",
+            "password": "abc123",
+            "cart": [],
+            "wishlist": [],
+            "address": [],
+            "recentWatched": []
+        }
+    ],
+    "discountRegisterEmails": [
+        {
+            "data": "arash@gmail.com",
+            "id": 1
+        }
+    ],
+    "products": []
+}

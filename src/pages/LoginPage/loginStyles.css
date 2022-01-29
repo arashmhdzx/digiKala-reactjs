@@ -1,0 +1,85 @@
+.login-page-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+    user-select: none;
+}
+
+.login-logo{
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+.login-input-title{
+    margin-bottom: 22px
+}
+.login-header-title{
+    color:#232933;
+    margin-bottom: 20px;
+}
+
+.login-box{
+    border-radius: 8px;
+    border: 1px solid #ededed;
+    padding: 30px;
+    box-sizing: border-box;
+    width: 380px;
+}
+
+.login-form-input{
+    box-sizing: border-box;
+    padding: 9px 12px;
+    border-radius: 8px;
+    background-color: #fff;
+    border: 1px solid #e0e0e2;
+    font-size: 1rem;
+    line-height: 24px;
+    width: 100%;
+    color: #030a16;
+    outline: none;
+    
+}
+
+.login-form-input:focus{
+    outline: none;
+    border-color: #008eb2;
+    
+}
+
+.loginBtnCart-loginPage{
+    width: 100%;
+    height: 48px;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    background-color: #ef394e;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    border-style: none;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+
+}
+
+.error-text{
+    color: #b2001a !important;
+    margin-bottom: 26px;
+    line-height:24px;
+}
+
+.loginBtnCart-loginPage:active{
+    background-color: #E3122A;
+}
+.discription-text{
+    color: #616161;
+    font-size: 12px;
+}
+.login-discription{
+    margin-top: 16px;
+    font-weight: 300;
+}

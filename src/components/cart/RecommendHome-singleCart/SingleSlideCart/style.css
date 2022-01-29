@@ -19,7 +19,7 @@
 .sliderWrapper{
     max-width: 301px;
     height: 100%;
-    margin: 0 15px;
+    padding: 0 15px;
 }
 
 .singleCartHeader-container{
@@ -50,7 +50,8 @@
     height: 100%;
 }
 .imageLinkWrapper{
-    align-self: center;
+    display: flex;
+    justify-content: center;
     height: 100%;
     margin-left: auto;
     margin-right: auto;

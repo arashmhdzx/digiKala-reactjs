@@ -29,7 +29,7 @@
 }
 
 .loginBtnCart{
-    width: 205px;
+    width: 100%;
     height: 76px;
     display: flex;
     flex-direction: row;
