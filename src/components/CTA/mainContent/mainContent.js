@@ -73,7 +73,7 @@ const mainContent = () => {
                     >
                     {images.map(
                         (items) => 
-                            <a href={items.brand} target="_blank" title={items.originalAlt} rel="noreferrer" >
+                            <a href={items.brand} target="_blank" title={items.originalAlt} style={{width:"100%",overflow:"hidden"}} rel="noreferrer" >
                                 <img src={items.url} alt={items.originalAlt} className="innerSlidePic" loading="lazy" />
                             </a>
                         
