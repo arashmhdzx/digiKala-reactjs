@@ -23,7 +23,7 @@ const Special = ({theme , slideData ,newClass }) => {
           </div>
         </a>
       <div className="SOfferSlider">
-        <Carousel isRTL={true} itemsToShow={3} itemsToScroll={2} itemPadding={[0,5,0,5]} >
+        <Carousel isRTL={true} itemsToShow={4} itemsToScroll={3} itemPadding={[0,5,0,5]} >
           {slideData.map(item => (
               <SpecialOfferCart imageLink={item.imageSrc} imgAlt={item.imageAlt} discription={item.imageDiscription}  cashGift={item.cashGift} cashGiftPrize={item.cashPrize} offerPercent={item.offerPercent} oldPrize={item.oldPrize} newPrize={item.newPrize} cartLink={item.cartLink} />
           )

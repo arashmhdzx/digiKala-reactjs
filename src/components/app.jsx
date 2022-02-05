@@ -19,10 +19,17 @@ import categoriesData from '../data/categoriesData.json'
 
 import './style.css'
 
-
+// rgba(74,74,74,.43)
 
 //sliders was changed in CTA styles
 //need to use api for setting emails
+
+const ProfileDropdown = (toggle) => {
+    return (
+        <div></div>
+    )
+}
+
 
 const App = () => {
 
@@ -34,48 +41,49 @@ const App = () => {
     return (
         <div className="appContainer">
             <NavBar />
+            <ProfileDropdown toggle={true/* profileToggle */} />
             <main className="" >
                 <Cta />
 
                 <SpecialOffer theme={firstTheme} slideData={firstSlideImagesData} />
 
-                <AdPlace links={firstAdImageLinks} topMargin={"40px"} />
+                <AdPlace links={firstAdImageLinks} />
 
                 <SpecialOffer isFirst={true} newClass={newClassSO} theme={secondTheme} slideData={firstSlideImagesData} />
-                
+
                 <section className="section-container">
                     <RecommendHome categoryHeader={"فرآورده‌های منجمد و یخچالی"} categoryHeaderAsYourSearched={true}
-                    minDatas={minDatas} slideData={ firstSlideImagesData}  isSingleCart={true} isSeeAllBtn={false} />
+                        minDatas={minDatas} slideData={firstSlideImagesData} isSingleCart={true} isSeeAllBtn={false} />
 
                     <CategoriesInfo ctgData={categoriesData} />
 
                     <RecommendHome categoryHeader={"لپتاپ"} categoryHeaderAsYourSearched={true}
-                    minDatas={minDatas} slideData={ firstSlideImagesData}  isSingleCart={true} isReverse={true} isSeeAllBtn={false} />
+                        minDatas={minDatas} slideData={firstSlideImagesData} isSingleCart={true} isReverse={true} isSeeAllBtn={false} />
 
-                    <AdPlace links={firstAdImageLinks} topMargin={"40px"} />
+                    <AdPlace links={firstAdImageLinks} />
 
                     <RecommendHome categoryHeader={"عینک"} categoryHeaderAsYourSearched={true} minDatas={minDatas}
-                    slideData={firstAdImageLinks}  />
+                        slideData={firstAdImageLinks} />
 
                     <RecommendHome categoryHeader={"کفش مردانه ورزشی"} categoryHeaderAsYourSearched={true} minDatas={minDatas}
-                    slideData={firstAdImageLinks}  />
+                        slideData={firstAdImageLinks} />
 
-                    <AdPlace links={secondAdImageLinks} topMargin={"40px"} />
+                    <AdPlace links={secondAdImageLinks}  />
 
                     <RecommendHome categoryHeader={"محصولات پربازدید اخیر"} minDatas={minDatas}
-                    slideData={firstAdImageLinks}  />
+                        slideData={firstAdImageLinks} />
 
                     <RecommendHome categoryHeader={"منتخب جدیدترین کالاها"} minDatas={minDatas}
-                    slideData={firstAdImageLinks}  />
+                        slideData={firstAdImageLinks} />
 
                     <RecommendHome categoryHeader={"محصولات پرفروش اخیر"} minDatas={minDatas}
-                    slideData={firstAdImageLinks}  />
+                        slideData={firstAdImageLinks} />
                 </section>
 
-            <Footer iconsData={footerIcons} />
-        
-        </main>
-    </div>
+                <Footer iconsData={footerIcons} />
+
+            </main>
+        </div>
 
     );
 }

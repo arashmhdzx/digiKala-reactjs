@@ -2,24 +2,35 @@ import React,{ useState ,useEffect } from 'react';
 
 import { useSelector ,useDispatch } from 'react-redux';
 import { logIn } from '../../store/slices/loginStatusSlice';
-import { passwordTokenHandler } from '../../store/slices/tokenSlice';
+// import { passwordTokenHandler } from '../../store/slices/tokenSlice';
 
 import { useNavigate } from 'react-router-dom';
 import styles from './confirmStyles.module.css'
 
 const Confirm = () => {
-    const [password, setPassword] = useState("");
-    const [fecthedData,setFetchedData] = useState(null);
+    const [ password, setPassword ] = useState("");
+    const [ localUserName , setLocalUserName ] = useState("");
+    const [ localData , setLocalData ] = useState("");
+    const [ fecthedData,setFetchedData ] = useState(null);
     
     const navigate = useNavigate();
     
-    const loginID = useSelector(state => state.userToken.userID);
+    // const loginID = useSelector(state => state.userToken.userID);
     const dispatch = useDispatch();
+    
+    useEffect(()=>{
+        const getLocalData = localStorage.getItem("user");
+        const objLocalData = JSON.parse(getLocalData);
+        setLocalData(objLocalData);
+        setLocalUserName(objLocalData.userName);
+    },[])
 
     const onSubmitHandler = (e) =>{
         e.preventDefault();
+        
         if(fecthedData.password === password){
-            dispatch(passwordTokenHandler(password));
+            const modifiedLocalData = { ...localData,password:password }
+            localStorage.setItem("user",modifiedLocalData)
             dispatch(logIn());
             navigate("/");
         }
@@ -29,7 +40,7 @@ const Confirm = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:8000/accounts/${loginID}`)
+        fetch(`http://localhost:8000/accounts/${localUserName}`)
             .then(res => {
                 return res.json();
             })
@@ -37,7 +48,7 @@ const Confirm = () => {
                 setFetchedData(data);
             })
     
-    }, [loginID]);
+    }, [localUserName]);
     
     // fecthedData && 
 

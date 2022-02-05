@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import { ReactComponent as Prize } from './prize.svg'
 import { ReactComponent as Login } from './login.svg'
@@ -7,11 +8,12 @@ import { ReactComponent as Login } from './login.svg'
 import './style.css'
 
 const SingleLoginCart = () => {
+    const isLogin = useSelector(state => state.loginStatus.isLog);
 
     const navigate = useNavigate() 
 
     return (
-        <div className="singleLoginCart-container">
+        <div className="singleLoginCart-container" >
             <div>
                 <Prize />
             </div>

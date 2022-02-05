@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
-import { userIDTokenHandler } from '../../store/slices/tokenSlice';
-import { idHandler } from '../../store/slices/newUser'
 
 import './loginStyles.css'
 
@@ -16,7 +14,7 @@ const Login = () => {
     
 
     // const { user } = useSelector(state => state.userToken.userName);
-    const dispatch = useDispatch();
+
 
     
     
@@ -24,14 +22,13 @@ const Login = () => {
         alert("حساب کاربری برای این ایمیل وجود ندارد. برای ایجاد حساب کاربری جدید لطفا شماره تماس خود را وارد نمایید.");
     }
     const handleToConfirmPage = () => {
-        console.log("confirm");
-        dispatch(userIDTokenHandler(userName));
+        const storageData = { userName : userName }
+        localStorage.setItem("user",JSON.stringify(storageData))
         navigate("/user/confirm");
     }
     const handleNewUserConfirmPassword = () => {
-        console.log("newuser")
-        dispatch(userIDTokenHandler(userName));
-        dispatch(idHandler(userName));
+        const storageData = { userName : userName };
+        localStorage.setItem("user",JSON.stringify(storageData));
         navigate("/user/register/confirm");
     }
 
@@ -67,22 +64,15 @@ const Login = () => {
         userName === "" && alert("vallah el azim you are koor,write something");
         if (charRegEx.test(userName)) {
             if (emailRegEx.test(userName)) {
-                
                 await fetchEmail(userName);
-
             }
             else {
                 setEmailNotExistError(true)
-                // /^(\09|0)?9\d{9}$/gm
-                // 09[0-3][0-9]-?[0-9]{3}-?[0-9]{4}
-                // /^(\09|0)?9[0-3][0-9]-?[0-9]{3}-?[0-9]{4}/gm
-
             }
         }
         if (phoneRegEx.test(userName)) {
             if (userName.startsWith("0")) {
                 const validNumber = userName.substring(1);
-                console.log(validNumber);
                 fetchNum(validNumber)
             }
             else {
