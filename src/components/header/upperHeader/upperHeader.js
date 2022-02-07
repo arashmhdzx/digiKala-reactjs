@@ -1,4 +1,4 @@
-import React, { useEffect ,useState } from 'react'
+import React, { useEffect ,useRef,useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -16,18 +16,30 @@ const UpperHeader = ({ shadow }) => {
     
     const navigate = useNavigate();
     const isLogged = useSelector(state => state.loginStatus.isLog);
-
     const [profileToggle, setProfileToggle] = useState(false);
 
+    const handleClickOutside = e => {
+        if (!wrapperRef.current.contains(e.target)) {
+            setProfileToggle(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    });
+    
+    
     useEffect(()=>{
         const buttonSelector = document.getElementById("el");
+        console.log(buttonSelector);
         const clickToggle = (e) =>{
                 e.preventDefault();
                 buttonSelector.classList.toggle("actived-profile-btn");
                 setProfileToggle(prev => !prev)
             }
         buttonSelector?.addEventListener("click",clickToggle);
-    },[])
+    },[isLogged])
 
     
         
@@ -36,6 +48,8 @@ const UpperHeader = ({ shadow }) => {
         navigate("/");
         window.location.reload();
     }
+    
+    const wrapperRef = useRef(null);
     
 
     return (
@@ -65,7 +79,7 @@ const UpperHeader = ({ shadow }) => {
                     </div>
                 </div>
                 
-                <div className={`toggle-profile-wrapper ${ profileToggle && "p-open"} `} >
+                <div ref={wrapperRef} className={`toggle-profile-wrapper ${ profileToggle && "p-open"} `} >
                     <div className='dropdown-profile-user' onClick={()=>navigate("/profile")}>
                         <div className='dropdown-profile-info-wrapper'>
                             <div>
@@ -106,6 +120,7 @@ const UpperHeader = ({ shadow }) => {
                 <div className="vertical"></div>
                 <a href="/cart" className="shoppingCart" >
                     <ShoppingCart />
+                    <div className='badge'>2</div>
                 </a>
             </div>    
         </div>

@@ -85,10 +85,10 @@ const mainContent = () => {
             </div>
             <div className="discount-gif-container">
                 <a className="gif-holder" href="/takhfif" title="تخفیف سر ماه" target="_blank">
-                    <img src={TopImg}  className="side-gif-resize" alt="تخفیف سر ماه" loading="lazy" />
+                    <img src={TopImg}  className="side-gif" alt="تخفیف سر ماه" loading="lazy" />
                 </a>
                 <a className="gif-holder" href="/takhfif" title="شگفت آویز" target="_blank" >
-                    <img src={DownImg} className="side-gif-resize" alt="شگفت آویز" loading="lazy" />
+                    <img src={DownImg} className="side-gif" alt="شگفت آویز" loading="lazy" />
                 </a>
             </div>
         </div>

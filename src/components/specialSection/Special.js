@@ -8,12 +8,10 @@ import SidePic from './images/side.png'
 import './style.css'
 
 
-const Special = ({theme , slideData ,newClass }) => {
+const Special = ({ theme , slideData }) => {
 
- 
-    
-  return (
-    <section className={`offerSection ${newClass}`} style={{backgroundColor:theme}}>
+    return (
+    <section className={`offerSection`} style={{backgroundColor:theme}}>
       <div className="offerContainer">
         <a href="/incredible-offers/" className="rightSection">
           <img src={SidePic} alt="پیشنهاد شگفت‌&zwnj;انگیز" className="incredible-offers-wrapper" />

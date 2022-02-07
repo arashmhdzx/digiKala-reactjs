@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React,{ useState ,useEffect } from 'react';
 
-import { useSelector ,useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { logIn } from '../../store/slices/loginStatusSlice';
 // import { passwordTokenHandler } from '../../store/slices/tokenSlice';
 
@@ -10,45 +11,74 @@ import styles from './confirmStyles.module.css'
 const Confirm = () => {
     const [ password, setPassword ] = useState("");
     const [ localUserName , setLocalUserName ] = useState("");
-    const [ localData , setLocalData ] = useState("");
-    const [ fecthedData,setFetchedData ] = useState(null);
+    const [ localData , setLocalData ] = useState(null);
+    const [ userData,setUserData ] = useState(null);
     
     const navigate = useNavigate();
     
-    // const loginID = useSelector(state => state.userToken.userID);
     const dispatch = useDispatch();
     
+    const localProcess = () => {
+        const getLocalLoginInfo = localStorage.getItem("loginInfo");
+        console.log(getLocalLoginInfo);
+        setLocalData(JSON.parse(getLocalLoginInfo));
+        setLocalUserName(JSON.parse(getLocalLoginInfo).userName);
+    }
+    
+    const fetchData = async() =>{
+        await fetch(`http://localhost:8000/accounts/${localUserName}`)
+        .then(res => {
+            return res.json();
+        })
+        .then(data => {
+            setUserData(data);
+        })
+    }
+    async function fetchingProcess(){
+        try {
+            localProcess();
+            await(fetchData());
+        } catch (error) {
+            alert("run")
+        }
+    }
+    
+    
+
     useEffect(()=>{
-        const getLocalData = localStorage.getItem("user");
-        const objLocalData = JSON.parse(getLocalData);
-        setLocalData(objLocalData);
-        setLocalUserName(objLocalData.userName);
+        const getLocalLoginInfo = localStorage.getItem("loginInfo");
+        console.log(getLocalLoginInfo);
+        setLocalData(JSON.parse(getLocalLoginInfo));
+        fetchData()
     },[])
 
-    const onSubmitHandler = (e) =>{
+
+            
+            
+    const onSubmitHandler = async(e) =>{
         e.preventDefault();
+        // fetchLocalData()
+        await fetchingProcess();
+
+        console.log("input pass",password);
+        console.log("localData",localData);
+        console.log("userdata",userData);
+        console.log("userdata pass",userData.password);
         
-        if(fecthedData.password === password){
-            const modifiedLocalData = { ...localData,password:password }
-            localStorage.setItem("user",modifiedLocalData)
-            dispatch(logIn());
+        if(  userData[0].password === password){
+            const modifiedLocalUserInfo = { ...localData,password:password }
+            console.log(modifiedLocalUserInfo);
+            localStorage.setItem("loginInfo",JSON.stringify(modifiedLocalUserInfo));
+            const data = { userData }
+            localStorage.setItem("user",JSON.stringify(data));
             navigate("/");
+            dispatch(logIn());
         }
         else{
             alert("sister,reedi")
         }
     }
 
-    useEffect(() => {
-        fetch(`http://localhost:8000/accounts/${localUserName}`)
-            .then(res => {
-                return res.json();
-            })
-            .then(data => {
-                setFetchedData(data);
-            })
-    
-    }, [localUserName]);
     
     // fecthedData && 
 

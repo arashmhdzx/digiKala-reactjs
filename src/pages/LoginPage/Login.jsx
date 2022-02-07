@@ -23,12 +23,12 @@ const Login = () => {
     }
     const handleToConfirmPage = () => {
         const storageData = { userName : userName }
-        localStorage.setItem("user",JSON.stringify(storageData))
+        localStorage.setItem("loginInfo",JSON.stringify(storageData))
         navigate("/user/confirm");
     }
     const handleNewUserConfirmPassword = () => {
         const storageData = { userName : userName };
-        localStorage.setItem("user",JSON.stringify(storageData));
+        localStorage.setItem("loginInfo",JSON.stringify(storageData));
         navigate("/user/register/confirm");
     }
 

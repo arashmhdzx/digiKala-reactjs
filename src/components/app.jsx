@@ -45,7 +45,7 @@ const App = () => {
             <main className="" >
                 <Cta />
 
-                <SpecialOffer theme={firstTheme} slideData={firstSlideImagesData} />
+                <SpecialOffer theme={firstTheme}   slideData={firstSlideImagesData} />
 
                 <AdPlace links={firstAdImageLinks} />
 

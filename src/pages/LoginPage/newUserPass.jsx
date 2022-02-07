@@ -13,16 +13,28 @@ const NewUserPass = () => {
 
     const [ password, setPassword ] = useState("");
     const [ confirmPassword, setConfirmPassword ] = useState("");
-    const [ fetchLocalData , setFetchLocalData ] = useState("");
+    const [ fetchLocalData , setFetchLocalData ] = useState(null);
     const [ localDataUserName , setLocalDataUserName ] = useState("");
 
     const navigate = useNavigate();
 
     // const loginID = useSelector(state => state.userToken.userID);
     const dispatch = useDispatch();
+    const postData = async() => {
+        const data = {
+            password: password,
+            id: localDataUserName
+        }
+        await fetch('http://localhost:8000/accounts',{
+            method: 'POST',
+            body:JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' }
+        })
+        
+    }
 
     useEffect(()=>{
-        const getLocalData = localStorage.getItem("user");
+        const getLocalData = localStorage.getItem("loginInfo");
         const objLocalData = JSON.parse(getLocalData);
         setLocalDataUserName(objLocalData.userName);
         setFetchLocalData(objLocalData);
@@ -36,10 +48,11 @@ const NewUserPass = () => {
         if (validPassword.test(password)) {
             if (confirmPassword === password) {
                 const modifiedLocalData = { ...fetchLocalData,password:password }
-                localStorage.setItem("user",modifiedLocalData)
+                localStorage.setItem("loginInfo",modifiedLocalData)
                 dispatch(passwordTokenHandler(password));
-                dispatch(logIn());
+                postData(modifiedLocalData);
                 navigate("/welcome");
+                dispatch(logIn());
             }
             else {
                 alert("sister,reedi,eshteb zadi");

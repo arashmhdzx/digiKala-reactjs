@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
     BrowserRouter,
     Routes,
     Route
     } from "react-router-dom";
+
+import { useDispatch } from 'react-redux';
+import { logIn } from './store/slices/loginStatusSlice.js';
 
 import MainPage from './components/app.jsx'
 import LoginPage from './pages/LoginPage/Login'
@@ -14,8 +17,16 @@ import PublicRoute from './routes/PublicRoute.jsx';
 import Profile from './pages/profile/profile.jsx'
 
 
-const routes = () => {
-    
+const AppRoutes = () => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        const loggedInUser = localStorage.getItem("user");
+        if (loggedInUser) {
+        //   const foundUser = JSON.parse(loggedInUser);
+            dispatch(logIn());
+        }
+    }, []);
+
     return (
         
             <BrowserRouter>
@@ -50,4 +61,4 @@ const routes = () => {
     )
 }
 
-export default routes
+export default AppRoutes
