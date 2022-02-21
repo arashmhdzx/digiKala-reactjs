@@ -69,7 +69,7 @@ const mainContent = () => {
                 />*/}
                 <Carousel itemsToShow={1}
                     isRTL={true} enableAutoPlay={true} autoPlaySpeed={5000}
-                    style={sliderStyle} 
+                    style={sliderStyle}
                     >
                     {images.map(
                         (items) => 

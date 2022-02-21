@@ -1,22 +1,53 @@
 {
-    "accounts": [
-        {
-            "id": "9372317761",
-            "fName":"آرش",
-            "lName":"مهدیزاده",
-            "email": "arash.mehdiizadeh@gmail.com",
-            "password": "abc123",
-            "cart": [],
-            "wishlist": [],
-            "address": [],
-            "recentWatched": []
-        }
-    ],
-    "discountRegisterEmails": [
-        {
-            "data": "arash@gmail.com",
-            "id": 1
-        }
-    ],
-    "products": []
+  "accounts": [
+    {
+      "id":"40ed1ee5-ba37-9ac6-6800-b3e9de892d1b",
+      "phoneNumber": "9372317761",
+      "fName": "آرش",
+      "lName": "مهدیزاده",
+      "email": "arash.mehdiizadeh@gmail.com",
+      "password": "abc123",
+      "cart": [],
+      "orders": {
+        "progress": [],
+        "delivered": [],
+        "returned": [],
+        "canceled": []
+      },
+      "birthDate": "",
+      "idNumber": "",
+      "moneyReturnID": "",
+      "wishlist": [],
+      "address": [],
+      "recentWatched": []
+    },
+    {
+      "id":"640d074d-8771-0629-ab6c-b6417acc5e4a",
+      "fName": "",
+      "lName": "",
+      "email": "",
+      "cart": [],
+      "wishlist": [],
+      "address": [],
+      "recentWatched": [],
+      "orders": {
+        "progress": [],
+        "delivered": [],
+        "returned": [],
+        "canceled": []
+      },
+      "birthDate": "",
+      "idNumber": "",
+      "moneyReturnID": "",
+      "password": "@EminemRapGod50",
+      "phoneNumber": "9300312054"
+    }
+  ],
+  "discountRegisterEmails": [
+    {
+      "data": "arash@gmail.com",
+      "id": 1
+    }
+  ],
+  "products": []
 }

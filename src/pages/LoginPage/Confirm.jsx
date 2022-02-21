@@ -18,38 +18,38 @@ const Confirm = () => {
     
     const dispatch = useDispatch();
     
-    const localProcess = () => {
-        const getLocalLoginInfo = localStorage.getItem("loginInfo");
-        console.log(getLocalLoginInfo);
-        setLocalData(JSON.parse(getLocalLoginInfo));
-        setLocalUserName(JSON.parse(getLocalLoginInfo).userName);
-    }
+    // const localProcess = () => {
+    //     const getLocalLoginInfo = localStorage.getItem("loginInfo");
+    //     console.log(getLocalLoginInfo);
+    //     setLocalData(JSON.parse(getLocalLoginInfo));
+    //     setLocalUserName(JSON.parse(getLocalLoginInfo).userName);
+    // }
     
-    const fetchData = async() =>{
-        await fetch(`http://localhost:8000/accounts/${localUserName}`)
+    const fetchData = async(id) =>{
+        await fetch(`http://localhost:8000/accounts/?phoneNumber=${id}`)
         .then(res => {
             return res.json();
         })
         .then(data => {
             setUserData(data);
+            // console.log("fet",data);
         })
     }
-    async function fetchingProcess(){
-        try {
-            localProcess();
-            await(fetchData());
-        } catch (error) {
-            alert("run")
-        }
-    }
+    // async function fetchingProcess(){
+    //     try {
+    //         localProcess();
+    //         await(fetchData());
+    //     } catch (error) {
+    //         alert("run")
+    //     }
+    // }
     
     
 
     useEffect(()=>{
         const getLocalLoginInfo = localStorage.getItem("loginInfo");
-        console.log(getLocalLoginInfo);
-        setLocalData(JSON.parse(getLocalLoginInfo));
-        fetchData()
+        // console.log(getLocalLoginInfo);
+        fetchData(JSON.parse(getLocalLoginInfo).userName)
     },[])
 
 
@@ -57,19 +57,22 @@ const Confirm = () => {
             
     const onSubmitHandler = async(e) =>{
         e.preventDefault();
-        // fetchLocalData()
-        await fetchingProcess();
+        // await fetchingProcess();
 
         console.log("input pass",password);
         console.log("localData",localData);
+        console.log("localusename",localUserName);
         console.log("userdata",userData);
-        console.log("userdata pass",userData.password);
+        // console.log("userdata pass",userData[0].password);
         
-        if(  userData[0].password === password){
-            const modifiedLocalUserInfo = { ...localData,password:password }
-            console.log(modifiedLocalUserInfo);
-            localStorage.setItem("loginInfo",JSON.stringify(modifiedLocalUserInfo));
-            const data = { userData }
+        if(  userData[0]?.password === password){
+            // const modifiedLocalUserInfo = { ...localData,password:password }
+            // console.log(modifiedLocalUserInfo);
+            // localStorage.setItem("loginInfo",JSON.stringify(modifiedLocalUserInfo));
+            localStorage.removeItem("loginInfo");
+            const token = { token:userData[0].id }
+            localStorage.setItem("token",JSON.stringify(token));
+            const data = { userData: userData[0] }
             localStorage.setItem("user",JSON.stringify(data));
             navigate("/");
             dispatch(logIn());

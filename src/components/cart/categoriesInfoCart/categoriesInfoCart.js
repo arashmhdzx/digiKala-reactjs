@@ -1,7 +1,7 @@
 import React from 'react';
 import Laptop from './icons/laptop.svg'
 import './style.css'
-
+import engTofaNum from '../../../utils/engTofaNum';
 
 const categoriesInfoCart = ({ data }) => {
     const e2p = (num) => num.replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
@@ -20,7 +20,7 @@ const categoriesInfoCart = ({ data }) => {
                             </div>
 
                             <div>
-                                <div className="categories-quantity" style={{color:"#00bfd6"}}> {`+ ${e2p(e.items)} کالا`} </div>
+                                <div className="categories-quantity" style={{color:"#00bfd6"}}> {`+ ${engTofaNum(e.items)} کالا`} </div>
                             </div>
                         </div>
                     </a>

@@ -21,25 +21,26 @@ const Login = () => {
     const handleEmailError = () => {
         alert("حساب کاربری برای این ایمیل وجود ندارد. برای ایجاد حساب کاربری جدید لطفا شماره تماس خود را وارد نمایید.");
     }
-    const handleToConfirmPage = () => {
-        const storageData = { userName : userName }
+    const handleToConfirmPage = (id) => {
+        const storageData = { userName : id }
         localStorage.setItem("loginInfo",JSON.stringify(storageData))
         navigate("/user/confirm");
     }
-    const handleNewUserConfirmPassword = () => {
-        const storageData = { userName : userName };
+    const handleNewUserConfirmPassword = (id) => {
+        console.log(id);
+        const storageData = { userName : id };
         localStorage.setItem("loginInfo",JSON.stringify(storageData));
+        console.log(localStorage.getItem("loginInfo"));
         navigate("/user/register/confirm");
     }
 
     const fetchNum = async (id) => {
-        await fetch(`http://localhost:8000/accounts/${id}`)
+        await fetch(`http://localhost:8000/accounts/?phoneNumber=${id}`)
             .then(res => {
                 return res.json();
             })
             .then(data => {
-                console.log(data);
-                Object.keys(data).length === 0 ? handleNewUserConfirmPassword() : handleToConfirmPage() ;
+                Object.keys(data).length === 0 ? handleNewUserConfirmPassword(id) : handleToConfirmPage(id) ;
             })
 
     }
@@ -72,8 +73,8 @@ const Login = () => {
         }
         if (phoneRegEx.test(userName)) {
             if (userName.startsWith("0")) {
-                const validNumber = userName.substring(1);
-                fetchNum(validNumber)
+                const validNum = userName.substring(1);
+                fetchNum(validNum)
             }
             else {
                 fetchNum(userName)
@@ -89,7 +90,7 @@ const Login = () => {
                     <img alt="digikala.com" src='https://www.digikala.com/static/files/bc60cf05.svg' style={{ width: "151px", height: "43px" }} />
                 </div>
 
-                <h3 className='login-header-title'>ورود / ثبت نام</h3>
+                <h3 className='login-header-title'>ورود | ثبت نام</h3>
                 <p className='discription-text login-input-title'>شماره موبایل یا پست الکترونیک خود را وارد کنید</p>
 
                 <form onSubmit={onSubmitHandler}>

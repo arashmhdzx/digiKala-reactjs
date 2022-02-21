@@ -179,8 +179,26 @@ input[type="search"]::-webkit-search-cancel-button {
 .toggle-profile-wrapper {
     text-align: start;
     color: #424750;
+    border:none;
+    border-collapse: collapse;
+}
+.row-line:hover{
+    transition: all .2s linear;
+    background-color: #f0f0f1;
+}
+.toggle-profile-wrapper .row-line {
+    
+    border-top: .1px solid #f0f0f1;
+    /* border-bottom: .5px solid #afafaf; */
 }
 
+.toggle-profile-wrapper .row-line:first-child {
+    border-top: none;
+}
+
+/* .toggle-profile-wrapper .row-line::last-child {
+    border-bottom: none;
+} */
 .dropdown-profile-titles {
     margin-right: 8px;
 }

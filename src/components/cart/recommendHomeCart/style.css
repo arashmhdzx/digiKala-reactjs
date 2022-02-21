@@ -17,7 +17,7 @@
     height: 317px;
     background-color: #fff;
     border-radius: 8px;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 .g-Image-container{

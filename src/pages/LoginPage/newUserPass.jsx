@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../store/slices/loginStatusSlice';
-import { passwordTokenHandler } from '../../store/slices/tokenSlice';
+// import { passwordTokenHandler } from '../../store/slices/tokenSlice';
 import { useNavigate } from 'react-router-dom';
+import guid from '../../utils/guid';
 
 import engToFaNum from '../../utils/engTofaNum'
 
@@ -13,7 +14,7 @@ const NewUserPass = () => {
 
     const [ password, setPassword ] = useState("");
     const [ confirmPassword, setConfirmPassword ] = useState("");
-    const [ fetchLocalData , setFetchLocalData ] = useState(null);
+    // const [ fetchLocalData , setFetchLocalData ] = useState(null);
     const [ localDataUserName , setLocalDataUserName ] = useState("");
 
     const navigate = useNavigate();
@@ -21,23 +22,42 @@ const NewUserPass = () => {
     // const loginID = useSelector(state => state.userToken.userID);
     const dispatch = useDispatch();
     const postData = async() => {
+        
         const data = {
+            id:guid(),
+            fName:"",
+            lName:"",
+            email: "",
+            cart: [],
+            wishlist: [],
+            address: [],
+            recentWatched: [],
+            orders: {
+                progress:[],
+                delivered:[],
+                returned:[],
+                canceled:[]
+            },
+            birthDate: "",
+            idNumber: "",
+            moneyReturnID: "",
             password: password,
-            id: localDataUserName
+            phoneNumber: localDataUserName
         }
         await fetch('http://localhost:8000/accounts',{
             method: 'POST',
             body:JSON.stringify(data),
             headers: { 'Content-Type': 'application/json' }
         })
-        
+        localStorage.setItem("token",JSON.stringify(data.id));
+        localStorage.setItem("user",JSON.stringify(data))
     }
 
     useEffect(()=>{
         const getLocalData = localStorage.getItem("loginInfo");
         const objLocalData = JSON.parse(getLocalData);
         setLocalDataUserName(objLocalData.userName);
-        setFetchLocalData(objLocalData);
+        // setFetchLocalData(objLocalData);
     },[])
 
     const validPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/
@@ -47,12 +67,13 @@ const NewUserPass = () => {
 
         if (validPassword.test(password)) {
             if (confirmPassword === password) {
-                const modifiedLocalData = { ...fetchLocalData,password:password }
-                localStorage.setItem("loginInfo",modifiedLocalData)
-                dispatch(passwordTokenHandler(password));
-                postData(modifiedLocalData);
-                navigate("/welcome");
+                // const modifiedLocalData = { ...fetchLocalData,password:password }
+                // console.log(modifiedLocalData);
+                // localStorage.setItem("loginInfo",JSON.stringify(modifiedLocalData))
+                postData();
                 dispatch(logIn());
+                // change to user/welcome
+                navigate("/");
             }
             else {
                 alert("sister,reedi,eshteb zadi");
@@ -73,7 +94,7 @@ const NewUserPass = () => {
                 </div>
 
                 <h5 className={styles.loginHeaderTitle}>
-                    حساب کاربری با شماره موبایل {localDataUserName.startsWith("0") ? engToFaNum() :engToFaNum(0)+engToFaNum(localDataUserName)} وجود ندارد.<br/>
+                    حساب کاربری با شماره موبایل {localDataUserName.startsWith("0") ? engToFaNum(localDataUserName) :engToFaNum(0)+engToFaNum(localDataUserName)} وجود ندارد.<br/>
                     برای ساخت حساب جدید، رمز عبور خود را وارد کنید.</h5>
                 <p className={`${styles.discriptionText} ${styles.loginInpuTitle}`}>رمز عبور حساب کاربری خود را وارد کنید</p>
 

@@ -14,13 +14,14 @@ import ConfirmPage from './pages/LoginPage/Confirm.jsx'
 import NewUserPass from './pages/LoginPage/newUserPass';
 import PrivateRoute from './routes/PrivateRoute.jsx';
 import PublicRoute from './routes/PublicRoute.jsx';
-import Profile from './pages/profile/profile.jsx'
+import Profile from './pages/profile/profile.jsx';
+import Products from './pages/products/products.jsx';
 
 
 const AppRoutes = () => {
     const dispatch = useDispatch();
     useEffect(() => {
-        const loggedInUser = localStorage.getItem("user");
+        const loggedInUser = localStorage.getItem("token");
         if (loggedInUser) {
         //   const foundUser = JSON.parse(loggedInUser);
             dispatch(logIn());
@@ -49,6 +50,9 @@ const AppRoutes = () => {
                     <Route path="/profile" element={ <PrivateRoute>
                         <Profile />
                     </PrivateRoute> } />
+                    <Route path="/products" element={<PublicRoute restricted={false}>
+                        <Products />
+                    </PublicRoute> } />
                     
                     {/* <PublicRoute restricted={false} component={ <MainPage/>} path="/" exact />
                     <PublicRoute restricted={true} component={<LoginPage />} path="" />

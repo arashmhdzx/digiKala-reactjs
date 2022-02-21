@@ -1,6 +1,6 @@
 import React, { useEffect ,useRef,useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import {ReactComponent as ShoppingCart } from './icons/shopping-cart.svg'
 import {ReactComponent as DigikalaIco} from './icons/Digikala.svg'
@@ -18,21 +18,20 @@ const UpperHeader = ({ shadow }) => {
     const isLogged = useSelector(state => state.loginStatus.isLog);
     const [profileToggle, setProfileToggle] = useState(false);
 
-    const handleClickOutside = e => {
-        if (!wrapperRef.current.contains(e.target)) {
-            setProfileToggle(false);
-        }
-    };
+    // const handleClickOutside = e => {
+    //     if (!wrapperRef.current.contains(e.target)) {
+    //         setProfileToggle(false);
+    //     }
+    // };
 
-    useEffect(() => {
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    });
+    // useEffect(() => {
+    //     document.addEventListener("mousedown", handleClickOutside);
+    //     return () => document.removeEventListener("mousedown", handleClickOutside);
+    // });
     
     
     useEffect(()=>{
         const buttonSelector = document.getElementById("el");
-        console.log(buttonSelector);
         const clickToggle = (e) =>{
                 e.preventDefault();
                 buttonSelector.classList.toggle("actived-profile-btn");
@@ -41,15 +40,13 @@ const UpperHeader = ({ shadow }) => {
         buttonSelector?.addEventListener("click",clickToggle);
     },[isLogged])
 
-    
-        
     function logout (){
         localStorage.clear();
         navigate("/");
         window.location.reload();
     }
     
-    const wrapperRef = useRef(null);
+    // const wrapperRef = useRef(null);
     
 
     return (
@@ -79,8 +76,8 @@ const UpperHeader = ({ shadow }) => {
                     </div>
                 </div>
                 
-                <div ref={wrapperRef} className={`toggle-profile-wrapper ${ profileToggle && "p-open"} `} >
-                    <div className='dropdown-profile-user' onClick={()=>navigate("/profile")}>
+                <div /* ref={wrapperRef} */ className={`toggle-profile-wrapper ${ profileToggle && "p-open"} `} >
+                    <div className='dropdown-profile-user row-line ' onClick={()=>navigate("/profile")}>
                         <div className='dropdown-profile-info-wrapper'>
                             <div>
                                 <img src="https://www.digikala.com/static/files/fd4840b2.svg" width="30" height="30" className='dropdown-profile-pic' alt='profile-pic' />
@@ -91,15 +88,15 @@ const UpperHeader = ({ shadow }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="dropdown-items-style" onClick={()=>navigate("/profile/orders")}>
+                    <div className="dropdown-items-style row-line" onClick={()=>navigate("/profile/orders")}>
                         <img src="https://img.icons8.com/office/50/000000/purchase-order.png" alt="order" width="18px" height="18px" />
                         <p className='dropdown-profile-titles'>سفارش‌های من</p>
                     </div>
-                    <div className="dropdown-items-style" onClick={()=>navigate("/digiclub/rewards")} >
+                    <div className="dropdown-items-style row-line" onClick={()=>navigate("/digiclub/rewards")} >
                         <img src={club} alt="club" width="18px" height="18px" />
                         <p className='dropdown-profile-titles'>جوایز دیجی‌کلاب</p>
                     </div>
-                    <div className="dropdown-items-style" onClick={logout} >
+                    <div className="dropdown-items-style row-line" onClick={logout} >
                         <img src="https://img.icons8.com/ios/50/000000/exit.png" width="18px" height="18px" alt="logout"/>
                         <p className='dropdown-profile-titles'>خروج از حساب کاربری</p>
                     </div>
