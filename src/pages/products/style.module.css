@@ -147,6 +147,9 @@
 .p_r16{
     padding: 0 16px;
 }
+.p_c16{
+    padding: 16px 0 ; 
+}
 .p_c4{
     padding: 4px 0;
 }
@@ -159,7 +162,7 @@
     color:#81858b ;
     list-style: disc outside;
 }
-.border_buttom{
+.border_bottom{
     border-bottom: 1px solid #f0f0f1;
 }
 .border_top{
@@ -167,7 +170,7 @@
 }
 
 .border{
-    border: 1px solid #f0f0f1;
+    border: 1px solid #e0e0e2;
     border-radius: 8px;
 }
 .buyBox{
@@ -204,4 +207,23 @@
     max-width: 102px;
     min-height: 44px;
     max-height: 44px;
+}
+.discriptionText{
+    font-size: .9rem;
+    font-weight: 400;
+    color: #212121;
+    line-height: 1.6rem;
+
+}
+
+.productAttr div:not(:last-child){
+    border-bottom: 1px solid #f0f0f1;
+}
+.selectedColor{
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+}
+.stickyBox_bg{
+    background-color: #f0f0f1;
 }

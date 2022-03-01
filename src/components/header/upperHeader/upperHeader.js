@@ -17,6 +17,7 @@ const UpperHeader = ({ shadow }) => {
     const navigate = useNavigate();
     const isLogged = useSelector(state => state.loginStatus.isLog);
     const [profileToggle, setProfileToggle] = useState(false);
+    const [cartLength, setCartLength] = useState(0);
 
     // const handleClickOutside = e => {
     //     if (!wrapperRef.current.contains(e.target)) {
@@ -28,6 +29,17 @@ const UpperHeader = ({ shadow }) => {
     //     document.addEventListener("mousedown", handleClickOutside);
     //     return () => document.removeEventListener("mousedown", handleClickOutside);
     // });
+    // console.log(JSON.parse(localStorage.getItem("user")))
+    var y = JSON.parse(localStorage.getItem("user"))
+    // var z = y["cart"]
+    // // setCartLength(z.length)
+    // useEffect(() => {
+    //     setCartLength(z.length)
+    // }, [])
+    
+    // useEffect(() => {
+    //     setCartLength(z.length)
+    // }, [])
     
     
     useEffect(()=>{
@@ -77,7 +89,7 @@ const UpperHeader = ({ shadow }) => {
                 </div>
                 
                 <div /* ref={wrapperRef} */ className={`toggle-profile-wrapper ${ profileToggle && "p-open"} `} >
-                    <div className='dropdown-profile-user row-line ' onClick={()=>navigate("/profile")}>
+                    <div className='dropdown-profile-user row-line ' onClick={()=>{navigate("/profile");setProfileToggle(false)}}>
                         <div className='dropdown-profile-info-wrapper'>
                             <div>
                                 <img src="https://www.digikala.com/static/files/fd4840b2.svg" width="30" height="30" className='dropdown-profile-pic' alt='profile-pic' />
@@ -96,7 +108,7 @@ const UpperHeader = ({ shadow }) => {
                         <img src={club} alt="club" width="18px" height="18px" />
                         <p className='dropdown-profile-titles'>جوایز دیجی‌کلاب</p>
                     </div>
-                    <div className="dropdown-items-style row-line" onClick={logout} >
+                    <div className="dropdown-items-style row-line" onClick={()=>{logout();setProfileToggle(false)}} >
                         <img src="https://img.icons8.com/ios/50/000000/exit.png" width="18px" height="18px" alt="logout"/>
                         <p className='dropdown-profile-titles'>خروج از حساب کاربری</p>
                     </div>
@@ -117,7 +129,10 @@ const UpperHeader = ({ shadow }) => {
                 <div className="vertical"></div>
                 <a href="/cart" className="shoppingCart" >
                     <ShoppingCart />
-                    <div className='badge'>2</div>
+                    {
+                        cartLength>0 &&
+                        <div className='badge'>{cartLength}</div>
+                    }
                 </a>
             </div>    
         </div>

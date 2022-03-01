@@ -22,6 +22,10 @@ const AppRoutes = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         const loggedInUser = localStorage.getItem("token");
+        const isCart = localStorage.getItem("cart")
+        if(isCart && loggedInUser){
+            localStorage.setItem("cart",JSON.stringify([]))
+        }
         if (loggedInUser) {
         //   const foundUser = JSON.parse(loggedInUser);
             dispatch(logIn());

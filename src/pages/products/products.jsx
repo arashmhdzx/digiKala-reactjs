@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
-import Navbar from '../../components/header/NavBar';
 import styled from './style.module.css';
 import Carousel from 'react-elastic-carousel'
+
+import Navbar from '../../components/header/NavBar';
 import RecommendHomeCart from '../../components/cart/recommendHomeCart/recommendHomeCart';
+import Footer from '../../components/Footer/footer'
+
 import minDatas from '../../data/minDatas.json'
+import supportLinks from './link.json'
+
+import { AddProduct } from '../../api/production';
+import engToPer from '../../utils/engTofaNum';
 
 import { ReactComponent as Plus } from '../../components/header/downerHeader/icons/plus.svg';
 import { ReactComponent as LeftArrow } from './icons/leftArrow.svg';
@@ -19,9 +26,7 @@ import { ReactComponent as Remove } from './icons/remove.svg'
 import { ReactComponent as Delete } from './icons/delete.svg'
 import { ReactComponent as Done } from './icons/done.svg'
 
-import supportLinks from './link.json'
 
-import engToPer from '../../utils/engTofaNum';
 
 const Products = () => {
 
@@ -30,14 +35,13 @@ const Products = () => {
         setSelectedBox(id);
     }
 
-    // const quantityButton = <div>
 
-    // </div>
 
     const slash = <span className={styled.slash}>/</span>
 
     const line = <div className={styled.line} />
     const brand = "شیائومی";
+    const price = "985,000"
     const brand_category = "ساعت هوشمند شیائومی";
 
     const ThreeDotsIcon = <svg width="24px" height="24px" fill="rgb(66,71,80)"><svg id="moreHoriz" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M16 12c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm-4-2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-8 2c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2z" clip-rule="evenodd"></path></svg></svg>
@@ -49,7 +53,7 @@ const Products = () => {
 
     const [selectedBox, setSelectedBox] = useState(colorData[0])
     const [quantity, setQuantity] = useState(0)
-
+    const productData = { id: "dk-123321", quantity: quantity, color: selectedBox, price: price }
     const moreImage = [
         {
             image: "https://dkstatics-public.digikala.com/digikala-products/fff3cfce14bdfdbf23eb263fb184c88620c1ec37_1619901421.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90"
@@ -145,7 +149,7 @@ const Products = () => {
                                         </div>
                                     </div>
                                     <div className={`${styled.flex_col} ${styled.p_c12}`}>
-                                        <h3 className={` ${styled.p_c12}`} style={{ paddingTop: "16px" }}>رنگ: {selectedBox && Object.values(selectedBox)}</h3>
+                                        <h3 className={` ${styled.p_c12}`} style={{ paddingTop: "16px" }}>رنگ: {Object.values(selectedBox)}</h3>
                                         <div className={`${styled.flex_row} ${styled.p_c8} ${styled.flex_wrap} color-container`} style={{ overflowX: "auto", userSelect: "none", cursor: "pointer" }}>
                                             {
 
@@ -255,7 +259,7 @@ const Products = () => {
                                             {line}
                                             <div className={`${styled.p_c12}  ${styled.flex_col}`} >
                                                 <div className={`${styled.d_flex} ${styled.ai_center} ${styled.p_c12} `} style={{ justifyContent: "flex-end" }}>
-                                                    <h3 className={styled.p_r8}>{engToPer("985,000")}</h3>
+                                                    <h3 className={styled.p_r8}>{engToPer(price)}</h3>
                                                     <Toman />
                                                 </div>
                                                 {
@@ -339,7 +343,7 @@ const Products = () => {
                         }
                     </div>
                 </div>
-                <div className={`${styled.border} ${styled.border_bottom4} ${styled.flex_col}`}>
+                <div className={`${styled.border} ${styled.border_bottom4} ${styled.flex_col}`} style={{ marginBottom: "20px" }}>
                     <div className={styled.d_flex} style={{ padding: "12px 18px", width: "fitContent" }}>
                         <h3 className={styled.p_c8} style={{ borderBottom: "3px solid #ef4056" }} >کالاهای مشابه</h3>
                     </div>
@@ -356,17 +360,171 @@ const Products = () => {
                         </div>
                     </div>
                 </div>
-                <div className={`${styled.d_flex} ${styled.p_r8} ${styled.border_buttom}`} style={{ position: "sticky",top:"82px",backgroundColor:"#fff" }}>
-                    <div className={`${styled.flex_row} ${styled.p_c12}`}>
-                        <div className={styled.p_r8}>معرفی</div>
-                        <div className={styled.p_r8}>بررسی تخصصی</div>
-                        <div className={styled.p_r8}>مشخصات</div>
-                        <div className={styled.p_r8}>دیدگاه‌ها</div>
+                <div className={styled.flex_col}>
+                    <div className={`${styled.d_flex} ${styled.p_r8} ${styled.border_bottom}`} style={{ position: "sticky", top: "82px", zIndex: "1", backgroundColor: "#fff" }}>
+                        <div className={`${styled.flex_row} ${styled.p_c12}`}>
+                            <div className={styled.p_r8}>معرفی</div>
+                            <div className={styled.p_r8}>بررسی تخصصی</div>
+                            <div className={styled.p_r8}>مشخصات</div>
+                            <div className={styled.p_r8}>دیدگاه‌ها</div>
+                        </div>
+                    </div>
+                    <div className={styled.flex_row}>
+                        <div className={styled.flex_col}>
+                            <div className={`${styled.border_bottom4} ${styled.flex_col}`} style={{ padding: "24px 0" }}>
+                                <div className={styled.p_c8} style={{ width: "fit-content" }}>
+                                    <h4 className={styled.p_c8} style={{ fontWeight: "500", borderBottom: "3px solid rgb(239, 64, 86)" }}>معرفی</h4>
+                                </div>
+                                <p className={styled.discriptionText} >
+                                    مچ بند می بند 6، همه انتظارات ما را از نسل جدید می بندها را برآورده کرد. همانطور که اطلاع دارید، می بندهای شیائومی به قیمت مناسب و ارائه امکانات درخور توجه مشهور هستند و لمس مستقیم تکنولوژی را برای مخاطبان خود میسر کرده‌اند. البته انقلابی که شیائومی در می بند 6 به راه انداخت، جلوه ای دست و دلبازانه از تکنولوژی گجت های پوشیدنی بود که می بند 5 را تکمیل کرده و پشت سر گذاشت. افزایش سایز نمایشگر با نرخ 50 درصد، برخورداری از سنسور اکسیژن خون، پشتیبانی از 30 فعالیت ورزشی و پشتیبانی از دستیار صوتی الکسا موثرترین گام‌های شیائومی در می بند 6 نسبت به نسل قبل محسوب می‌شود.
+                                </p>
+                            </div>
+                            <div className={`${styled.border_bottom4} ${styled.flex_col}`} style={{ padding: "24px 0" }}>
+                                <div className={styled.p_c8} style={{ width: "fit-content" }}>
+                                    <h4 className={styled.p_c8} style={{ fontWeight: "500", borderBottom: "3px solid rgb(239, 64, 86)" }}>بررسی تخصصی</h4>
+                                </div>
+                                <div className={styled.flex_row}>
+                                    <div className={styled.flex_col} >
+                                        <h4 className={styled.p_c12} style={{ fontWeight: "500" }}>برترین دستبند هوشمند جهان</h4>
+                                        <p className={styled.discriptionText} style={{ lineHeight: "2rem" }}> بدون شک در عرصه دست‌بند‌های هوشمند، شیائومی توانست عملکرد بسیار عالی را به‌نمایش بگذارد. تجلی عملکرد شیائومی با معرفی دستبند هوشمند Mi Band 5 بود که به نسبت نسل قبلی خودش به صفحه‌نمایش بزرگتری مجهز شده بود. این دستبند هوشمند توانست با قابلیت‌های بسیار جذاب و البته قیمت مقرون به‌صرفه‌ای که داشت، لقب پرفروش‌ترین دستبند هوشمند جهان را به خودش اختصاص داد. اما نوبت به نسل جدید رسید و شاهد رونمایی شیائومی Mi Band 6 بودیم که به نسبت Mi Band 5 به مشخصات فنی قدرتمند‌تر و قابلیت‌های جذاب‌تری مجهز شده است. در نگاه اولیه طراحی در نظر گرفته شده برای این دستبند هوشمند تفاوتی با نسل قبلی ندارد. در قسمت پشتی اما سنسور‌های جدیدی به نسبت نسل قبلی برای این دستبند هوشمند در نظر گرفته شده که در ادامه به آن‌ها خواهیم پرداخت. درون جعبه این محصول هم دستبند هوشمند، دستبند و شارژر مغناطیسی قرار گرفته است. در قسمت‌های کناری صفحه‌نمایش هم خمیدگی‌های بسیار جذابی را شاهد هستیم که سبب شده تا با صفحه‌نمایش یکدست‌تر و زیبا‌تری رو‌به‌رو باشیم. همانطور که اشاره داشتیم، Mi Band 6 به صفحه‌نمایش با ابعاد بزرگتری به نسبت Mi Band 5 مجهز شده است و اما نکته جالب توجه وزن تقریبا مشابه 12.8 گرم با Mi Band 5 (وزن 12 گرم) است.</p>
+                                    </div>
+                                    <div style={{ marginRight: "16px" }}>
+                                        <img src="https://dkstatics-public.digikala.com/digikala-reviews/c33340d760f558d6b52e8a5437976664fb693840_1635662780.jpg?x-oss-process=image/quality,q_70" alt="مچ بند شیاومی mi 6" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={`${styled.border_bottom4} ${styled.flex_col}`} style={{ padding: "24px 0" }}>
+                                <div className={styled.p_c8} style={{ width: "fit-content" }}>
+                                    <h4 className={styled.p_c8} style={{ fontWeight: "500", borderBottom: "3px solid rgb(239, 64, 86)" }}>مشخصات</h4>
+                                </div>
+                                <div className={styled.flex_row}>
+                                    <div className={`${styled.d_flex}`} style={{ width: "256px", marginLeft: "48px" }}>
+                                        <h4 className={styled.p_c12} style={{ fontWeight: "500" }}>مشخصات</h4>
+                                    </div>
+                                    <div className={`${styled.flex_col} `} style={{ width: "100%" }}>
+                                        <div className={`${styled.flex_col} attr`} style={{ width: "100%" }}>
+                                            <div className={`${styled.flex_row} `}>
+                                                <p className={`${styled.reviewsQuantity} ${styled.p_c12} ${styled.p_r8}`} style={{ width: "200px", marginLeft: "16px", fontSize: "1rem" }}>{"نوع باتری" + " : "}</p>
+                                                <p className={`${styled.discriptionText} ${styled.p_c12} ${styled.border_bottom}`} style={{ width: "100%" }}>لیتیوم پلیمری</p>
+                                            </div>
+                                        </div>
+                                        <div className={`${styled.flex_col} attr`} style={{ width: "100%" }}>
+                                            <div className={`${styled.flex_row} `}>
+                                                <p className={`${styled.reviewsQuantity} ${styled.p_c12} ${styled.p_r8}`} style={{ width: "200px", marginLeft: "16px", fontSize: "1rem" }}>{"تراکم پیکسلی صفحه نمایش" + " : "}</p>
+                                                <p className={`${styled.discriptionText} ${styled.p_c12} ${styled.border_bottom}`} style={{ width: "100%" }}>۳۲۶ پیکسل بر اینچ</p>
+                                            </div>
+                                        </div>
+                                        <div className={`${styled.flex_col} attr`} style={{ width: "100%" }}>
+                                            <div className={`${styled.flex_row} `}>
+                                                <p className={`${styled.reviewsQuantity} ${styled.p_c12} ${styled.p_r8}`} style={{ width: "200px", marginLeft: "16px", fontSize: "1rem" }}>{"رزولوشن صفحه نمایش" + " : "}</p>
+                                                <p className={`${styled.discriptionText} ${styled.p_c12} ${styled.border_bottom}`} style={{ width: "100%" }}>۴۸۶x۱۵۲</p>
+                                            </div>
+                                        </div>
+                                        <div className={`${styled.flex_col} attr`} style={{ width: "100%" }}>
+                                            <div className={`${styled.flex_row} `}>
+                                                <p className={`${styled.reviewsQuantity} ${styled.p_c12} ${styled.p_r8}`} style={{ width: "200px", marginLeft: "16px", fontSize: "1rem" }}>{"نوع صفحه نمایش" + " : "}</p>
+                                                <p className={`${styled.discriptionText} ${styled.p_c12} ${styled.border_bottom}`} style={{ width: "100%" }}>AMOLED</p>
+                                            </div>
+                                        </div>
+                                        <div className={`${styled.flex_col} attr`} style={{ width: "100%" }}>
+                                            <div className={`${styled.flex_row} `}>
+                                                <p className={`${styled.reviewsQuantity} ${styled.p_c12} ${styled.p_r8}`} style={{ width: "200px", marginLeft: "16px", fontSize: "1rem" }}>{"اتصالات" + " : "}</p>
+                                                <p className={`${styled.discriptionText} ${styled.p_c12}`} style={{ width: "100%" }}>Bluetooth</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={`${styled.border_bottom4} ${styled.flex_col}`} style={{ padding: "24px 0" }}>
+                                <div className={styled.p_c8} style={{ width: "fit-content" }}>
+                                    <h4 className={styled.p_c8} style={{ fontWeight: "500", borderBottom: "3px solid rgb(239, 64, 86)" }}>دیدگاه‌ها</h4>
+                                </div>
+                                <p className={styled.discriptonText}>
+
+                                </p>
+                            </div>
+
+
+                        </div>
+                        <div style={{ minWidth: "300px", marginRight: "40px" }}>
+                            <div className={`${styled.p_c12}`} style={{ position: "sticky", top: "132px", maxWidth: "336px" }}>
+                                <div className={`${styled.border} ${styled.stickyBox_bg} ${styled.flex_col}`} style={{ padding: "16px" }}>
+                                    <div className={styled.flex_row}>
+                                        <img width="80px" height="80px" src="https://dkstatics-public.digikala.com/digikala-products/3ae838864ed3a2ec364f28e70bf2da22def4f1fd_1619901420.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" alt="مچ بند هوشمند شیائومی مدل Mi Band 6 Global Version" />
+                                        <div className={styled.flex_col} style={{ marginRight: "20px" }}>
+                                            <p className={styled.discriptionText} style={{ fontSize: ".8rem" }}>مچ بند هوشمند شیائومی مدل Mi Band 6 Global Version</p>
+                                            <div className={`${styled.flex_row} ${styled.ai_center}`} >
+                                                <div className={styled.selectedColor} style={{ backgroundColor: "#" + Object.keys(selectedBox) }}></div>
+                                                <p className={`${styled.p_r8} ${styled.discriptionText}`}>{Object.values(selectedBox)}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {line}
+                                    <div className={`${styled.flex_col} ${styled.p_c12}`}>
+                                        <div className={`${styled.d_flex} ${styled.ai_center}`} style={{ marginBottom: "4px" }}>
+                                            <div className={` ${styled.p_r8} ${styled.d_flex} ${styled.ai_center}`}><Dk width="18px" height="18px" /></div>
+                                            <div className={styled.reviewAvg} style={{ fontSize: "0.9rem", color: "#424750" }}>دیجیکالا</div>
+                                        </div>
+                                        <div className={`${styled.d_flex} ${styled.ai_center}`} style={{ marginBottom: "4px" }}>
+                                            <div className={` ${styled.p_r8} ${styled.d_flex} ${styled.ai_center}`}><Guarantee width="18px" height="18px" /></div>
+                                            <div className={styled.reviewAvg} style={{ fontSize: "0.9rem", color: "#424750" }}>گارانتی ۱۸ ماهه رایانه همراه</div>
+                                        </div>
+                                        <div className={`${styled.d_flex} ${styled.ai_center}`} style={{ marginBottom: "4px" }}>
+                                            <div className={` ${styled.p_r8} ${styled.d_flex} ${styled.ai_center}`}><Available width="18px" height="18px" /></div>
+                                            <div className={styled.reviewAvg} style={{ fontSize: "0.9rem", color: "#424750" }}>موجود در انبار دیجی‌کالا</div>
+                                        </div>
+                                    </div>
+                                    {line}
+                                    <div>
+                                        <div className={`${styled.p_c12}  ${styled.flex_col}`} >
+                                            <div className={`${styled.d_flex} ${styled.ai_center} ${styled.p_c12} `} style={{ justifyContent: "flex-end" }}>
+                                                <h3 className={styled.p_r8}>{engToPer("985,000")}</h3>
+                                                <Toman />
+                                            </div>
+                                            {
+                                                quantity == 0 ?
+                                                    <div onClick={() => setQuantity(1)} className={`${styled.d_flex} ${styled.ai_center} ${styled.addButton} `}>
+                                                        <p className={styled.addButtonText}>افزودن به سبد</p>
+                                                    </div> :
+                                                    <div className={`${styled.flex_row}`} style={{ padding: "4px" }} >
+                                                        <div className={`${styled.border_box} ${styled.boxSize} ${styled.boxShadow} ${styled.p_r8} ${styled.flex_row} ${styled.ai_center}`}
+                                                            style={{ borderRadius: "8px", justifyContent: "space-between", userSelect: "none" }}
+                                                        >
+                                                            <div onClick={() => setQuantity(prev => prev + 1)} className={`${styled.d_flex} ${styled.ai_center}`}>
+                                                                <Add />
+                                                            </div>
+                                                            <span className={`${styled.d_flex} ${styled.ai_center}`}>{engToPer(quantity)}</span>
+                                                            <div className={`${styled.flex_row} ${styled.ai_center}`}>
+                                                                {
+                                                                    quantity > 1 ?
+                                                                        <div onClick={() => setQuantity(prev => prev - 1)} className={`${styled.d_flex} ${styled.ai_center}`}>
+                                                                            <Remove />
+                                                                        </div> :
+                                                                        <div onClick={() => setQuantity(0)} className={`${styled.d_flex} ${styled.ai_center}`}>
+                                                                            <Delete />
+                                                                        </div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                        <div className={`${styled.flex_col} ${styled.p_r16} ${styled.reviewAvg}`}>
+                                                            <p>در سبد شما</p>
+                                                            <div style={{ fontSize: ".8rem" }}>
+                                                                <span>مشاهده </span>
+                                                                <span style={{ color: "#19bfd3" }}>سبد خرید</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
             </div>
         </div>
+        <Footer />
     </>;
 };
 

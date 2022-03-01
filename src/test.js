@@ -23,7 +23,54 @@ let guid = () => {
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 }
 
-console.log(guid());
+// console.log(guid());
 
 let text = "  "
-console.log(text.trim().length>0);
+// console.log(text.trim().length>0);
+var myArray = [
+    {id:1, name:"bob"},
+    {id:2, name:"dan"},
+    {id:3, name:"barb"},
+   ]
+   
+   // grab the Array item which matchs the id "2"
+   const data = {
+    token:guid(),
+    fName:"",
+    lName:"",
+    email: "",
+    cart: [],
+    wishlist: [],
+    address: [],
+    recentWatched: [],
+    orders: {
+        progress:[],
+        delivered:[],
+        returned:[],
+        canceled:[]
+    },
+    birthDate: "",
+    idNumber: "",
+    moneyReturnID: "",
+    password: "password",
+    phoneNumber: "localDataUserName"
+}
+
+console.log(Object.fromEntries(Object.entries(data).filter(([key]) => (!key.includes('email') 
+&& !key.includes("password") && !key.includes("phoneNumber") && !key.includes("cart")))));
+
+const addresses = [
+    { id: 1, name: "test1" },
+    { id: 2, name: "test2" },
+    { id: 2, name: "test3" },
+    { id: 3, name: "test4" },
+    { id: 4, name: "test5" },
+    { id: 5, name: "test6" },
+    { id: 5, name: "test7" },
+    { id: 6, name: "test8" }
+] // Some array I got from async call
+
+console.log(Array.from(new Set(addresses.map(a => a.id)))
+ .map(id => {
+   return addresses.find(a => a.id === id)
+ }))

@@ -14,7 +14,7 @@ const categoriesInfoCart = ({ data }) => {
 
                             <div className="category-space-between">
                                 <div className="image-ico-container">
-                                    <img src={Laptop}  alt=""  classname="category-ico" />
+                                    <img src={Laptop}  alt=""  className="category-ico" />
                                 </div>
                                 <div className="categories-disc" style={{color:"#000"}}>{e.discription}</div>
                             </div>

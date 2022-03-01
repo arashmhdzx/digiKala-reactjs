@@ -21,7 +21,7 @@ const RecommendHome = ({ isSingleCart,  categoryHeader, categoryHeaderAsYourSear
                 <div className="recommendHomeHeader-wrapper">
                     <div className="recommendHomeHeader">
                         <div className="sliderHeader-wrapper">
-                            <span class="RHHeader-text">{categoryHeader}</span>
+                            <span className="RHHeader-text">{categoryHeader}</span>
                             {categoryHeaderAsYourSearched ? <span class="RHheader-asYouSearched">بر اساس بازدیدهای شما</span> : null}
                         </div>
                         <a href="/asnj/" className="seeAllSlider-btn" style={{visibility: isSeeAllBtn ? "visible" :"hidden" }}>
