@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
-import { userIDTokenHandler } from '../../store/slices/tokenSlice';
-import { idHandler } from '../../store/slices/newUser'
-
 
 import './loginStyles.css'
 
@@ -17,33 +14,33 @@ const Login = () => {
     
 
     // const { user } = useSelector(state => state.userToken.userName);
-    const dispatch = useDispatch();
+
 
     
     
     const handleEmailError = () => {
         alert("حساب کاربری برای این ایمیل وجود ندارد. برای ایجاد حساب کاربری جدید لطفا شماره تماس خود را وارد نمایید.");
     }
-    const handleToConfirmPage = () => {
-        console.log("confirm");
-        dispatch(userIDTokenHandler(userName));
+    const handleToConfirmPage = (id) => {
+        const storageData = { userName : id }
+        localStorage.setItem("loginInfo",JSON.stringify(storageData))
         navigate("/user/confirm");
     }
-    const handleNewUserConfirmPassword = () => {
-        console.log("newuser")
-        dispatch(userIDTokenHandler(userName));
-        dispatch(idHandler(userName));
+    const handleNewUserConfirmPassword = (id) => {
+        console.log(id);
+        const storageData = { userName : id };
+        localStorage.setItem("loginInfo",JSON.stringify(storageData));
+        console.log(localStorage.getItem("loginInfo"));
         navigate("/user/register/confirm");
     }
 
     const fetchNum = async (id) => {
-        await fetch(`http://localhost:8000/accounts/${id}`)
+        await fetch(`http://localhost:8000/accounts/?phoneNumber=${id}`)
             .then(res => {
                 return res.json();
             })
             .then(data => {
-                console.log(data);
-                Object.keys(data).length === 0 ? handleNewUserConfirmPassword() : handleToConfirmPage() ;
+                Object.keys(data).length === 0 ? handleNewUserConfirmPassword(id) : handleToConfirmPage(id) ;
             })
 
     }
@@ -65,26 +62,19 @@ const Login = () => {
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
-
+        userName === "" && alert("vallah el azim you are koor,write something");
         if (charRegEx.test(userName)) {
             if (emailRegEx.test(userName)) {
-                
                 await fetchEmail(userName);
-
             }
             else {
                 setEmailNotExistError(true)
-                // /^(\09|0)?9\d{9}$/gm
-                // 09[0-3][0-9]-?[0-9]{3}-?[0-9]{4}
-                // /^(\09|0)?9[0-3][0-9]-?[0-9]{3}-?[0-9]{4}/gm
-
             }
         }
         if (phoneRegEx.test(userName)) {
             if (userName.startsWith("0")) {
-                const validNumber = userName.substring(1);
-                console.log(validNumber);
-                fetchNum(validNumber)
+                const validNum = userName.substring(1);
+                fetchNum(validNum)
             }
             else {
                 fetchNum(userName)
@@ -100,7 +90,7 @@ const Login = () => {
                     <img alt="digikala.com" src='https://www.digikala.com/static/files/bc60cf05.svg' style={{ width: "151px", height: "43px" }} />
                 </div>
 
-                <h3 className='login-header-title'>ورود / ثبت نام</h3>
+                <h3 className='login-header-title'>ورود | ثبت نام</h3>
                 <p className='discription-text login-input-title'>شماره موبایل یا پست الکترونیک خود را وارد کنید</p>
 
                 <form onSubmit={onSubmitHandler}>

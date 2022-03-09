@@ -7,5 +7,29 @@
 }
 .section-container{
     width: 100%;
-    padding: 0 15px;
+    box-sizing: border-box;
+    padding: 0 25px
+}
+
+
+.toggle-profile-wrapper{
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 80px;
+    width: 200px;
+    box-shadow: 0 3px 8px 0 rgb(0 0 0 / 30%);
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 100;
+}
+.p-open{
+    display: block;
+}
+.dropdown-profile-user-info{
+    display: flex;
+    flex-direction: column;
+    padding: 0 12px;
+    border-bottom: 1px solid #e5e5e5;
 }

@@ -1,5 +1,5 @@
 .recommendHome{
-    width: 98%;
+    width: 100%;
     padding: 20px 0;
     border: 0;
     height: auto;
@@ -28,7 +28,7 @@
     width: 100%;
 }
 .recommendHomeRight-container{
-    width: 72%;
+    width: 98%;
     height: auto;
     background-color: #fff ;
     border-radius: 8px;
@@ -165,8 +165,8 @@
 }
 
 .recommendHome-singleCartWrapper{
-    width: 27%;
-    height: 100%;
+    width: 26%;
+    
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 1px 1px 4px 0 rgb(0 0 0 / 3%);

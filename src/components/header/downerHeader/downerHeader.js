@@ -28,7 +28,7 @@ const DownerHeader = () => {
                                 <p className="menu-text"> دسته بندی کالاها</p>
                             </div>
                         </li>
-                        <li className="verticalDown"></li>
+                        <li className="verticalDown" style={{listStyle:"none"}}/>
                         <li className="categories-container">
                             <div className="innerMenu" >
                                 <div className="menuIcon-container">

@@ -1,44 +1,88 @@
-import React,{ useState ,useEffect } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react';
 
-import { useSelector ,useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { logIn } from '../../store/slices/loginStatusSlice';
-import { passwordTokenHandler } from '../../store/slices/tokenSlice';
+// import { passwordTokenHandler } from '../../store/slices/tokenSlice';
 
 import { useNavigate } from 'react-router-dom';
 import styles from './confirmStyles.module.css'
 
 const Confirm = () => {
     const [password, setPassword] = useState("");
-    const [fecthedData,setFetchedData] = useState(null);
-    
+    const [localUserName, setLocalUserName] = useState("");
+    const [localData, setLocalData] = useState(null);
+    const [userData, setUserData] = useState(null);
+
     const navigate = useNavigate();
-    
-    const loginID = useSelector(state => state.userToken.userID);
+
     const dispatch = useDispatch();
 
-    const onSubmitHandler = (e) =>{
-        e.preventDefault();
-        if(fecthedData.password === password){
-            dispatch(passwordTokenHandler(password));
-            dispatch(logIn());
-            navigate("/");
-        }
-        else{
-            alert("sister,reedi")
-        }
-    }
+    // const localProcess = () => {
+    //     const getLocalLoginInfo = localStorage.getItem("loginInfo");
+    //     console.log(getLocalLoginInfo);
+    //     setLocalData(JSON.parse(getLocalLoginInfo));
+    //     setLocalUserName(JSON.parse(getLocalLoginInfo).userName);
+    // }
 
-    useEffect(() => {
-        fetch(`http://localhost:8000/accounts/${loginID}`)
+    const fetchData = async (id) => {
+        await fetch(`http://localhost:8000/accounts/?phoneNumber=${id}`)
             .then(res => {
                 return res.json();
             })
             .then(data => {
-                setFetchedData(data);
+                setUserData(data);
+                // console.log("fet",data);
             })
-    
-    }, [loginID]);
-    
+    }
+    // async function fetchingProcess(){
+    //     try {
+    //         localProcess();
+    //         await(fetchData());
+    //     } catch (error) {
+    //         alert("run")
+    //     }
+    // }
+
+
+
+    useEffect(() => {
+        const getLocalLoginInfo = localStorage.getItem("loginInfo");
+        // console.log(getLocalLoginInfo);
+        fetchData(JSON.parse(getLocalLoginInfo).userName)
+    }, [])
+
+
+
+
+    const onSubmitHandler = async (e) => {
+        e.preventDefault();
+
+        if (userData[0]?.password === password) {
+            localStorage.removeItem("loginInfo");
+            // a function to update cart list
+            // ...
+            const notSignCart = JSON.parse(localStorage.getItem("cart"))
+            if (notSignCart !== []) {
+                var newCart = notSignCart.concat(userData[0].cart)
+                newCart = Array.from(new Set(newCart.map(a => a.id)))
+                    .map(id => {
+                        return newCart.find(a => a.id === id)
+                    })
+                localStorage.setItem("cart",JSON.stringify(newCart))
+            }
+            localStorage.setItem("token", JSON.stringify(userData[0].id));
+            localStorage.setItem("user", JSON.stringify(Object.fromEntries(Object.entries(userData[0]).filter(([key]) => (!key.includes('email')
+                && !key.includes("password") && !key.includes("phoneNumber") && !key.includes("cart"))))));
+            navigate("/");
+            dispatch(logIn());
+        }
+        else {
+            alert("sister,reedi")
+        }
+    }
+
+
     // fecthedData && 
 
     return (
@@ -56,7 +100,7 @@ const Confirm = () => {
                         className={styles.loginFormInput} />
                     <input type="submit" className={styles.loginBtnCartLoginPage} value="ادامه" />
                 </form>
-                <a href='/' className={`${styles.discriptionText} ${styles.loginDiscription}`} style={{color:"#006eff",marginTop:"40px"}} >بازیابی رمز عبور ˂ </a>
+                <a href='/' className={`${styles.discriptionText} ${styles.loginDiscription}`} style={{ color: "#006eff", marginTop: "40px" }} >بازیابی رمز عبور ˂ </a>
             </div>
 
         </div>

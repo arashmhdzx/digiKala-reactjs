@@ -1,7 +1,7 @@
 import React from 'react';
 import Laptop from './icons/laptop.svg'
 import './style.css'
-
+import engTofaNum from '../../../utils/engTofaNum';
 
 const categoriesInfoCart = ({ data }) => {
     const e2p = (num) => num.replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
@@ -14,13 +14,13 @@ const categoriesInfoCart = ({ data }) => {
 
                             <div className="category-space-between">
                                 <div className="image-ico-container">
-                                    <img src={Laptop}  alt=""  classname="category-ico" />
+                                    <img src={Laptop}  alt=""  className="category-ico" />
                                 </div>
                                 <div className="categories-disc" style={{color:"#000"}}>{e.discription}</div>
                             </div>
 
                             <div>
-                                <div className="categories-quantity" style={{color:"#00bfd6"}}> {`+ ${e2p(e.items)} کالا`} </div>
+                                <div className="categories-quantity" style={{color:"#00bfd6"}}> {`+ ${engTofaNum(e.items)} کالا`} </div>
                             </div>
                         </div>
                     </a>

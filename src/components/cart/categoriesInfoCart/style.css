@@ -1,7 +1,7 @@
 .category-cart-container{
     display: flex;
     flex-direction: row;
-    align-items:stretch;
+    justify-content: space-evenly;
     width: 100%;
     margin: 15px 0;
     font-size: .857rem;

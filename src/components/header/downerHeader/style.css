@@ -31,7 +31,10 @@
 .category-container{
     display: inline;
 }
+.categories-container{
+    list-style: none;
 
+}
 .menu-text{
     color: #616161;
     font-size: 12px;

@@ -69,11 +69,11 @@ const mainContent = () => {
                 />*/}
                 <Carousel itemsToShow={1}
                     isRTL={true} enableAutoPlay={true} autoPlaySpeed={5000}
-                    style={sliderStyle} 
+                    style={sliderStyle}
                     >
                     {images.map(
                         (items) => 
-                            <a href={items.brand} target="_blank" title={items.originalAlt} rel="noreferrer" >
+                            <a href={items.brand} target="_blank" title={items.originalAlt} style={{width:"100%",overflow:"hidden"}} rel="noreferrer" >
                                 <img src={items.url} alt={items.originalAlt} className="innerSlidePic" loading="lazy" />
                             </a>
                         
@@ -85,10 +85,10 @@ const mainContent = () => {
             </div>
             <div className="discount-gif-container">
                 <a className="gif-holder" href="/takhfif" title="تخفیف سر ماه" target="_blank">
-                    <img src={TopImg}  className="side-gif-resize" alt="تخفیف سر ماه" loading="lazy" />
+                    <img src={TopImg}  className="side-gif" alt="تخفیف سر ماه" loading="lazy" />
                 </a>
                 <a className="gif-holder" href="/takhfif" title="شگفت آویز" target="_blank" >
-                    <img src={DownImg} className="side-gif-resize" alt="شگفت آویز" loading="lazy" />
+                    <img src={DownImg} className="side-gif" alt="شگفت آویز" loading="lazy" />
                 </a>
             </div>
         </div>

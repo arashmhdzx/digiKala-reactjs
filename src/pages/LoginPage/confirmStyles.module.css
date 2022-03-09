@@ -84,3 +84,9 @@
     margin-top: 16px;
     font-weight: 300;
 }
+
+.lists{
+    list-style-type:disc;
+    display: list-item;
+    list-style-position: inside;
+}

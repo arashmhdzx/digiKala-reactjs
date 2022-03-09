@@ -36,11 +36,10 @@ const index = () => {
     return ( 
         <header className = "header-container header-shadow" >
         
-        <UpperHeader / > {
+        <UpperHeader / >
+        {
             isShow ? null : < DownerHeader / >
         }
-
-        
         </header>
     )
 }

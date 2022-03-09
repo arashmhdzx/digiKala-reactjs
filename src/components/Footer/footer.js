@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable jsx-a11y/alt-text */
-import React,{ useState,useEffect } from 'react'
-
+import React,{ useState } from 'react'
+import iconsData from '../../data/footerIcons.json'
 
 import InstagramBNW from "./icons/BNW/instagram.svg"
 import TwitterBNW from "./icons/BNW/twitter.svg"
@@ -17,7 +17,7 @@ import Aparat from "./icons/aparat.svg"
 
 import "./style.css"
 
-const footer = ({ iconsData }) => {
+const footer = () => {
 
     const scrollToTop = () => {
         window.scrollTo({
@@ -59,10 +59,10 @@ const footer = ({ iconsData }) => {
                 </div>
                 <div className="Digikala-features">
                     {
-                        iconsData.map( item => (
+                        iconsData.map( (item,index )=> (
 
-                            <a href={item.link} className="footer-featuresIcon">
-                                <img classname="featureIcon-img" src={item.svgLink} style={{width:"54px",height:"54px"}} alt={item.title} />
+                            <a key={index} href={item.link} className="footer-featuresIcon">
+                                <img className="featureIcon-img" src={item.svgLink} style={{width:"54px",height:"54px"}} alt={item.title} />
                                 <div className="featureIcon-title">{item.title}</div>
                             </a>
 
@@ -73,7 +73,7 @@ const footer = ({ iconsData }) => {
                 <div className="Line" style={{width:"98"}}></div>
 
                 <div className="footer-faq-container">
-                    <nav classname="footer--column-links">
+                    <nav className="footer--column-links">
                         <a href="https://" className="footer--faq-table--header">با دیجیکالا</a>
                         <li><a href="https://" className="footer--faq-table--list">اتاق اخبار دیجی کالا</a></li>
                         <li><a href="https://" className="footer--faq-table--list">فروش در دیجی کالا</a></li>
