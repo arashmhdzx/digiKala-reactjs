@@ -15,4 +15,11 @@ const EngTofaNum = (data) => {
     }
     
 }
-export default EngTofaNum;
+
+const NumberWithCommas = (x) => {
+    var parts = x.toString().split(".");
+    parts[0]=parts[0].replace(/\B(?=(\d{3})+(?!\d))/g,",");
+    return parts.join(",");
+    }
+
+export { EngTofaNum , NumberWithCommas };

@@ -11,7 +11,7 @@ import SingleLoginCart from '../cart/RecommendHome-singleCart/SingleLoginCart/Si
 
 import './style.css'
 
-const RecommendHome = ({ isSingleCart,  categoryHeader, categoryHeaderAsYourSearched , loginCart , minDatas , isReverse , slideData , isSeeAllBtn}) => {    
+const RecommendHome = ({ isSingleCart,  categoryHeader, recentSearchTitle , loginCart , data , isReverse , slideData , isSeeAllBtn}) => {    
     const isLogin = useSelector(state => state.loginStatus.isLog);
 
     return (
@@ -22,7 +22,7 @@ const RecommendHome = ({ isSingleCart,  categoryHeader, categoryHeaderAsYourSear
                     <div className="recommendHomeHeader">
                         <div className="sliderHeader-wrapper">
                             <span className="RHHeader-text">{categoryHeader}</span>
-                            {categoryHeaderAsYourSearched ? <span class="RHheader-asYouSearched">بر اساس بازدیدهای شما</span> : null}
+                            {recentSearchTitle ? <span class="RHheader-asYouSearched">بر اساس بازدیدهای شما</span> : null}
                         </div>
                         <a href="/asnj/" className="seeAllSlider-btn" style={{visibility: isSeeAllBtn ? "visible" :"hidden" }}>
                             < >مشاهده همه</>
@@ -35,11 +35,11 @@ const RecommendHome = ({ isSingleCart,  categoryHeader, categoryHeaderAsYourSear
                     </div>
                 </div>
                 <div className="RH-Slider">
-                    
+                    {/* {console.log(data)} */}
                     <Carousel isRTL={true} itemsToShow={5} itemsToScroll={4} itemPadding={[0,5,0,5]} verticalMode={false}>
-                        {minDatas.map( data => (
-                            <RecommendHomeCart isFullWidth={!isSingleCart}  link={data.link} imageLink={data.imageLink} newPrize={data.newPrize}
-                            oldPrize={data.oldPrize} percent={data.percent} isOffer={data.isOffer} discription={data.discription} />
+                        {data.map( data => (
+                            <RecommendHomeCart  isFullWidth={!isSingleCart}  link={data.id} imageLink={data.mainImage} price={data.price}
+                            oldPrice={data.oldPrice} discount={data.discount} isOffer={data.isOffer} discription={data.title} />
                         ))}
                     </Carousel>
 

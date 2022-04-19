@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
 
 import NavBar from "./header/NavBar";
 import Cta from "./CTA/Cta"
@@ -9,13 +9,13 @@ import CategoriesInfo from "./CategoriesInfo/Categories";
 import Footer from "./Footer/footer";
 
 import footerIcons from '../data/footerIcons.json'
-import minDatas from '../data/minDatas.json'
+// import minDatas from '../data/minDatas.json'
 import firstSlideImagesData from '../data/firstSlideData.json'
 import firstAdImageLinks from '../data/firstAdImageLinks.json'
 import secondAdImageLinks from '../data/secondAdImageLinks.json'
 import categoriesData from '../data/categoriesData.json'
 
-
+import { getSlideProduct ,getSortedProducts } from '../api/productionApi';
 
 import './style.css'
 
@@ -37,6 +37,35 @@ const App = () => {
     const secondTheme = '#6BB927';
     const newClassSO = "newClassSo"
 
+    const [firstData, setFirstData] = useState([])
+    const [secondData, setSecondData] = useState([])
+    const [thirdData, setThirdData] = useState([])
+    const [fourthData, setFourthData] = useState([])
+    const [mostSeenData, setMostSeenData] = useState([])
+    const [mostSoldData, setMostSoldData] = useState([])
+
+
+    React.useEffect(() => {
+        getSlideProduct("laptop").then(
+            res => setFirstData(res.slice(0,13))
+        )
+        getSlideProduct("phone").then(
+            res => setSecondData(res.slice(0,13))
+        )
+        getSlideProduct("tv").then(
+            res => setThirdData(res.slice(0,13))
+        )
+        getSlideProduct("smart_watch").then(
+            res => setFourthData(res.slice(0,13))
+        )
+        getSortedProducts("seen").then(
+            res => setMostSeenData(res.slice(0,13))
+        )
+        getSortedProducts("sold").then(
+            res => setMostSoldData(res.slice(0,13))
+        )
+    }, [])
+    
 
     return (
         <div className="appContainer">
@@ -45,39 +74,34 @@ const App = () => {
             <main className="" >
                 <Cta />
 
-                <SpecialOffer theme={firstTheme}   slideData={firstSlideImagesData} />
+                <SpecialOffer theme={firstTheme} slideData={firstSlideImagesData} />
 
                 <AdPlace links={firstAdImageLinks} />
 
                 <SpecialOffer isFirst={true} newClass={newClassSO} theme={secondTheme} slideData={firstSlideImagesData} />
 
                 <section className="section-container">
-                    <RecommendHome categoryHeader={"فرآورده‌های منجمد و یخچالی"} categoryHeaderAsYourSearched={true}
-                        minDatas={minDatas} slideData={firstSlideImagesData} isSingleCart={true} isSeeAllBtn={false} />
+                    <RecommendHome categoryHeader={"لپتاپ"} recentSearchTitle={true} data={firstData} />
 
                     <CategoriesInfo ctgData={categoriesData} />
 
-                    <RecommendHome categoryHeader={"لپتاپ"} categoryHeaderAsYourSearched={true}
-                        minDatas={minDatas} slideData={firstSlideImagesData} isSingleCart={true} isReverse={true} isSeeAllBtn={false} />
+                    <RecommendHome categoryHeader={"گوشی موبایل"} recentSearchTitle={true} data={secondData} />
 
                     <AdPlace links={firstAdImageLinks} />
 
-                    <RecommendHome categoryHeader={"عینک"} categoryHeaderAsYourSearched={true} minDatas={minDatas}
-                        slideData={firstAdImageLinks} />
+                    <RecommendHome categoryHeader={"تلویزیون"} recentSearchTitle={true} data={thirdData} />
 
-                    <RecommendHome categoryHeader={"کفش مردانه ورزشی"} categoryHeaderAsYourSearched={true} minDatas={minDatas}
-                        slideData={firstAdImageLinks} />
+                    <RecommendHome categoryHeader={"مچ بند و ساعت هوشمند"} recentSearchTitle={true} data={fourthData} />
 
-                    <AdPlace links={secondAdImageLinks}  />
+                    <AdPlace links={secondAdImageLinks} />
 
-                    <RecommendHome categoryHeader={"محصولات پربازدید اخیر"} minDatas={minDatas}
-                        slideData={firstAdImageLinks} />
 
-                    <RecommendHome categoryHeader={"منتخب جدیدترین کالاها"} minDatas={minDatas}
-                        slideData={firstAdImageLinks} />
 
-                    <RecommendHome categoryHeader={"محصولات پرفروش اخیر"} minDatas={minDatas}
-                        slideData={firstAdImageLinks} />
+                    <RecommendHome categoryHeader={"محصولات پربازدید اخیر"} data={mostSeenData}/>
+
+                    {/* <RecommendHome categoryHeader={"منتخب جدیدترین کالاها"} minDatas={minDatas}/> */}
+
+                    <RecommendHome categoryHeader={"محصولات پرفروش اخیر"} data={mostSoldData}/>
                 </section>
 
                 <Footer iconsData={footerIcons} />

@@ -6,7 +6,7 @@ import { logIn } from '../../store/slices/loginStatusSlice';
 import { useNavigate } from 'react-router-dom';
 import guid from '../../utils/guid';
 
-import engToFaNum from '../../utils/engTofaNum'
+import { EngTofaNum } from '../../utils/numberTools'
 
 import styles from './confirmStyles.module.css'
 
@@ -51,7 +51,7 @@ const NewUserPass = () => {
         })
         localStorage.setItem("token", JSON.stringify(data.token));
         localStorage.setItem("user", JSON.stringify(Object.fromEntries(Object.entries(data).filter(([key]) => (!key.includes('email')
-            && !key.includes("password") && !key.includes("phoneNumber") && !key.includes("cart"))))))
+            && !key.includes("password") && !key.includes("phoneNumber") && !key.includes("cart") && !key.includes("token"))))))
         const oldData = localStorage.getItem("")
     }
 
@@ -96,7 +96,7 @@ const NewUserPass = () => {
                 </div>
 
                 <h5 className={styles.loginHeaderTitle}>
-                    حساب کاربری با شماره موبایل {localDataUserName.startsWith("0") ? engToFaNum(localDataUserName) : engToFaNum(0) + engToFaNum(localDataUserName)} وجود ندارد.<br />
+                    حساب کاربری با شماره موبایل {localDataUserName.startsWith("0") ? EngTofaNum(localDataUserName) : EngTofaNum(0) + EngTofaNum(localDataUserName)} وجود ندارد.<br />
                     برای ساخت حساب جدید، رمز عبور خود را وارد کنید.</h5>
                 <p className={`${styles.discriptionText} ${styles.loginInpuTitle}`}>رمز عبور حساب کاربری خود را وارد کنید</p>
 
@@ -112,7 +112,7 @@ const NewUserPass = () => {
                 <div>
                     <li className={`${styles.discriptionText} ${styles.lists}`}>حداقل شامل یک کارکتر بزرگ باشد.</li>
                     <li className={`${styles.discriptionText} ${styles.lists}`}>حداقل شامل یک عدد باشد.</li>
-                    <li className={`${styles.discriptionText} ${styles.lists}`}>طول رمز عبور شما حداقل {engToFaNum(6)} کارکتر باشد.</li>
+                    <li className={`${styles.discriptionText} ${styles.lists}`}>طول رمز عبور شما حداقل {EngTofaNum(6)} کارکتر باشد.</li>
                     <li className={`${styles.discriptionText} ${styles.lists}`}><span style={{ textDecoration: "underline" }}>ترجیحا</span> شامل یک کارکتر خاص باشد.</li>
 
                 </div>

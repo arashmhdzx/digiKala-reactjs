@@ -17,6 +17,7 @@ const UpperHeader = ({ shadow }) => {
     const navigate = useNavigate();
     const isLogged = useSelector(state => state.loginStatus.isLog);
     const [profileToggle, setProfileToggle] = useState(false);
+    const [searchBox, setSearchBox] = useState(false);
     const [cartLength, setCartLength] = useState(0);
 
     // const handleClickOutside = e => {
@@ -30,7 +31,7 @@ const UpperHeader = ({ shadow }) => {
     //     return () => document.removeEventListener("mousedown", handleClickOutside);
     // });
     // console.log(JSON.parse(localStorage.getItem("user")))
-    var y = JSON.parse(localStorage.getItem("user"))
+    // var y = JSON.parse(localStorage.getItem("user"))
     // var z = y["cart"]
     // // setCartLength(z.length)
     // useEffect(() => {
@@ -72,6 +73,9 @@ const UpperHeader = ({ shadow }) => {
                 </div>
                 <div className="search-container">
                     {/*<span class="fa fa-search form-control-feedback"></span>*/}
+                    <div onClick={()=>setSearchBox(true)}>
+
+                    </div>
                     <input type="search" className='searchBox'
                     /*  ${isActive ? 'isActiveSearch' : ""}`} onClick={() => setIsActive(!isActive) */
                     placeholder="جستجو در دیجی&zwnj;کالا …"

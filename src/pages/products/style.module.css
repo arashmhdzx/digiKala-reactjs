@@ -78,6 +78,11 @@
     display: flex;
     width: 100%;
 }
+
+.mh_100{
+    min-height: 100px;
+}
+
 .flex_col{
     display: flex;
     flex-direction: column;
@@ -191,6 +196,7 @@
     font-weight: 600;
     color: #fff;
     font-size: .85rem;
+    /* color:#565656; */
 }
 .border_bottom4{
     border-bottom: 4px solid #f0f0f1;

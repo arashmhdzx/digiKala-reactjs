@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ReactComponent as LeftArrow } from '../products/icons/leftArrow.svg';
 import { ReactComponent as Toman } from '../products/icons/toman.svg';
 import { ReactComponent as Edit } from './Edit.svg';
-import engTofaNum from '../../utils/engTofaNum';
+import {EngTofaNum} from '../../utils/numberTools';
 import Navbar from '../../components/header/NavBar';
 import { LogOut } from '../../hooks/useJWT'
 
@@ -29,7 +29,7 @@ const Profile = () => {
                                 <div className='flex width-full jc-sb'>
                                     <div className='flex-col'>
                                         <h4>{ userData?.fName + " " + userData?.lName}</h4>
-                                        <p className='body-1 second-color-100'>{engTofaNum("0" +parseInt(userData?.phoneNumber))} </p>
+                                        <p className='body-1 second-color-100'>{EngTofaNum("0" +parseInt(userData?.phoneNumber))} </p>
                                     </div>
                                     <div className='flex ai-center'><Edit /></div>
                                 </div>
@@ -51,7 +51,7 @@ const Profile = () => {
                                 <div className='flex jc-sb'>
                                     <p className='font-w350'>دیجی کلاب</p>
                                     <span className='body-1'>
-                                        {engTofaNum("55")}
+                                        {EngTofaNum("55")}
                                         امتیاز
                                     </span>
                                 </div>
