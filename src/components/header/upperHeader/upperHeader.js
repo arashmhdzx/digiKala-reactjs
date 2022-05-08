@@ -2,10 +2,16 @@ import React, { useEffect ,useRef,useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 
+import useComponentVisible from '../../../hooks/componentVisible';
+
+import { BiTime ,BiTrash,BiChevronLeft } from 'react-icons/bi'
+import { AiOutlineFire,AiOutlineLeft } from 'react-icons/ai'
 import {ReactComponent as ShoppingCart } from './icons/shopping-cart.svg'
 import {ReactComponent as DigikalaIco} from './icons/Digikala.svg'
 import club from '../downerHeader/icons/club.svg'
 import UserPic from './icons/user-6767.png'
+
+
 import './style.css'
 // import { logOut } from '../../../store/slices/loginStatusSlice';
 
@@ -15,10 +21,13 @@ const UpperHeader = ({ shadow }) => {
     const shadowdata = "0 7px 8px 0 rgb(0 0 0 / 0.4)";
     
     const navigate = useNavigate();
+    const inputRef = useRef();
     const isLogged = useSelector(state => state.loginStatus.isLog);
     const [profileToggle, setProfileToggle] = useState(false);
     const [searchBox, setSearchBox] = useState(false);
     const [cartLength, setCartLength] = useState(0);
+    const mostSearch = ["روغن سمن","باطری کلیمتون","پیرهن هاوایی","Iphone"]
+    const recentSearch = ["سامسونگ","تلوزیون","مچ بند","Iphone","لپتاپ"]
 
     // const handleClickOutside = e => {
     //     if (!wrapperRef.current.contains(e.target)) {
@@ -42,6 +51,21 @@ const UpperHeader = ({ shadow }) => {
     //     setCartLength(z.length)
     // }, [])
     
+    const concernedElement = document.querySelector(".search-box");
+    const profileModal = document.querySelector(".toggle-profile-wrapper");
+    
+document.addEventListener("mousedown", (event) => {
+  if (concernedElement?.contains(event.target)) {
+  } else {
+        setSearchBox(false)
+  }
+});
+document.addEventListener("mousedown", (event) => {
+  if (profileModal?.contains(event.target)) {
+  } else {
+        setProfileToggle(false)
+  }
+});
     
     useEffect(()=>{
         const buttonSelector = document.getElementById("el");
@@ -59,30 +83,79 @@ const UpperHeader = ({ shadow }) => {
         window.location.reload();
     }
     
-    // const wrapperRef = useRef(null);
-    
-
+    function focus () {
+        inputRef.current.focus()
+    }
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+                navigate("/products/q="+inputRef.current.value)
+                window.location.reload()
+        }
+      }
     return (
         
         <div className="upperHeader-container" style={{boxShadow: shadow ? shadowdata : ""}} > {/* style={isShow ? { display: 'none' } : {} } */}
-            <div className='search-wrapper'>
-                <div className="logo-container">
-                    <div onClick={()=>navigate("/")} className="logo" alt="دیجی کالا">
-                        <DigikalaIco />
-                    </div>
-                </div>
-                <div className="search-container">
-                    {/*<span class="fa fa-search form-control-feedback"></span>*/}
-                    <div onClick={()=>setSearchBox(true)}>
+            <div className='search-wrapper ju-bet'>
+                    <div  className='flex'>
+                        <div className="logo-container">
+                        <div onClick={()=>navigate("/")} className="logo" alt="دیجی کالا">
+                                <DigikalaIco />
+                        </div>
+                        </div>
+                        <div className="search-container">
+                        {/*<span class="fa fa-search form-control-feedback"></span>*/}
+                                <div 
+                                onClick={()=>{setSearchBox(true);}}
+                                className={`search-box ${searchBox && "active-searchbar"} `}
+                                >
+                                        <input type="search" className={`searchBox ${searchBox && "activeSearchInput"}`}
+                                        ref={inputRef} onKeyDown={handleKeyDown}
+                                        placeholder="جستجو در دیجی&zwnj;کالا …"
+                                        dir="rtl" align="right"  />
 
-                    </div>
-                    <input type="search" className='searchBox'
-                    /*  ${isActive ? 'isActiveSearch' : ""}`} onClick={() => setIsActive(!isActive) */
-                    placeholder="جستجو در دیجی&zwnj;کالا …"
-                    dir="rtl" align="right"  />
+                                        { searchBox && <div className='search py-16'>
+                                                <div></div>
+                                                <div className='flex flex-col'>
+                                                        <div className='flex ju-bet py-8'>
+                                                                <div className='flex'>
+                                                                        <div className='flex ai-center f-24p ml-24'><BiTime fill='#a1a3a8'/></div>
+                                                                        <div>آخرین جستجوهای شما</div>
+                                                                </div>
+                                                                <div className='flex ai-center f-24p ml-24'><BiTrash fill='#a1a3a8'/></div>
+                                                        </div>
+                                                        <div className='flex pr-32'>
+                                                            {recentSearch.map(data => (
+                                                                <div className='flex ai-center ml-12 border p-suggest' style={{borderRadius:"24px"}}>
+                                                                    <div className='flex ml-16'>{data}</div>
+                                                                    <AiOutlineLeft/>
+
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                </div>
+                                                <div className='flex flex-col'>
+                                                        <div className='flex py-8'>
+                                                                <div className='flex ai-center f-24p ml-24'><AiOutlineFire fill='#a1a3a8'/></div>
+                                                                <div>جستجوهای پرطرفدار</div>
+                                                        </div>
+                                                        <div className='flex pr-32'>
+                                                        {mostSearch.map(data => (
+                                                                <div className='flex ai-center ml-12 border p-suggest' style={{borderRadius:"24px"}}>
+                                                                    <div className='flex ml-16'>{data}</div>
+                                                                    <AiOutlineLeft/>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                        <div>
+                                                                <img src="https://dkstatics-public.digikala.com/digikala-adservice-banners/df6f7e02609f6f14f15a0de5876539ac89afc23d_1645968447.jpg?x-oss-process=image/quality,q_95"
+                                                                        alt='پیشنهاد روزانه' className='search-image my-16'
+                                                                />
+                                                        </div>
+                                                </div>
+                                        </div>}
+                                </div>
+                        </div>
                 </div>
-            </div>
-                
             <div className="login-container">
                 { isLogged ? <>
                 <div className='profile-wrapper'>
@@ -92,7 +165,7 @@ const UpperHeader = ({ shadow }) => {
                     </div>
                 </div>
                 
-                <div /* ref={wrapperRef} */ className={`toggle-profile-wrapper ${ profileToggle && "p-open"} `} >
+                <div className={`toggle-profile-wrapper ${ profileToggle && "p-open"} `} >
                     <div className='dropdown-profile-user row-line ' onClick={()=>{navigate("/profile");setProfileToggle(false)}}>
                         <div className='dropdown-profile-info-wrapper'>
                             <div>
@@ -139,6 +212,7 @@ const UpperHeader = ({ shadow }) => {
                     }
                 </a>
             </div>    
+        </div>
         </div>
         )
 }

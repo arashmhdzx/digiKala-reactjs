@@ -61,7 +61,7 @@ const AppRoutes = () => {
                     <Route path="/products/dkp-:productId" element={<PublicRoute restricted={false}>
                         <Products />
                     </PublicRoute> } />
-                    <Route path="/search" element={<PublicRoute restricted={false}>
+                    <Route path="/products/q=:userSearch" element={<PublicRoute restricted={false}>
                         <SearchPage />
                     </PublicRoute> } />
                     

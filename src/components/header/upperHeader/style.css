@@ -1,6 +1,6 @@
 .upperHeader-container {
     background-color: #ffffff;
-    height: auto;
+    height: 66px;
     justify-content: space-between;
     flex-wrap: nowrap;
     width: 100%;
@@ -14,14 +14,12 @@
 
 .search-wrapper {
     display: flex;
-
+        width: 100%;
 }
 
 .logo-container {
-    padding: 13px 0;
-    text-align: center;
+display: flex;
     align-items: center;
-    flex: none;
 }
 
 .logo {
@@ -29,9 +27,12 @@
 }
 
 .search-container {
-    width: 100%;
+    /* width: 100%; */
     text-align: center;
     padding: 8px 15px;
+    position: fixed;
+    top: 5px;
+    right: 140px;
 }
 
 .login-container {
@@ -46,7 +47,7 @@
 
 .searchBox {
     width: 550px;
-    height: 100%;
+    /* height: 100%; */
     color: #474747;
     font-weight: 300;
     font-size: .857rem;
@@ -57,11 +58,12 @@
     padding: 14px 45px 14px 10px;
     text-align: right;
     outline: none;
+  height: 44px;
 }
 
 
 .searchBox:focus {
-    box-shadow: 0px 0px 7px rgb(187, 187, 187);
+    /* box-shadow: 0px 0px 7px rgb(187, 187, 187); */
     background-color: #ffffff;
 }
 
@@ -231,4 +233,56 @@ input[type="search"]::-webkit-search-cancel-button {
     color: #fff;
     background-color: #EE384E;
     border-radius: 50%;
+}
+.f-24p{
+        font-size: 24px;
+}
+.search{
+        border-top: 1px solid #19bfd3;
+}
+.active-searchbar{
+        display: flex;
+        flex-direction: column;
+        min-height: 450px;
+        background: #fff;
+        box-shadow: 0px 0px 7px rgb(187, 187, 187); 
+        border-radius: 8px;
+}
+.ml-24{
+        margin-left: 24px;
+}
+.py-16{
+        padding-top: 16px;
+        padding-bottom: 16px;
+}
+.pr-32{
+        padding-right: 32px;
+}
+.px-16{
+        padding-left: 16px;
+        padding-right: 16px;
+}
+.py-8{
+        padding-top: 8px;
+        padding-bottom: 8px;
+}
+.ml-12{
+    margin-left: 12px;
+}
+.p-suggest{
+        padding: 6px 12px 6px 4px ;
+        border: 1px solid #e0e0e2;
+        border-radius: 20px;
+}
+.search-image{
+        width: 540px;
+        border-radius: 8px;
+}
+
+.my-16{
+        margin-top: 16px;
+        margin-bottom: 16px;
+}
+.activeSearchInput{
+        background-color: #fff;
 }

@@ -31,7 +31,7 @@ import { ReactComponent as Done } from './icons/done.svg'
 
 const Products = () => {
 
-    let { productId } = useParams();
+    var { productId } = useParams();
 
     const colorSelectHandler = (id) => {
         setSelectedBox(id);
@@ -56,6 +56,7 @@ const Products = () => {
             .then(res => fetchingProgress(res));
         getSlideProduct(category)
             .then(res => setSlideData(res.slice(0, 12)))
+        document.title = data?.title
     }, [])
 
 

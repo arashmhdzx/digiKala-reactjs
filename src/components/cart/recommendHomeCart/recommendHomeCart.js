@@ -20,8 +20,8 @@ const RecommendHomeCart = ({ imageLink ,isFullWidth , price , oldPrice , link , 
                     </div>
                     {/* <Countdown date={Date("2022-03-20")} /> */}
                     <div className="g-discription-row">{discription}</div>
-                    <div className="g-newPrize-container">
-                        <div className="">
+                    <div className="g-newPrize-container ai-center">
+                        <div className="flex ai-center" style={{width:"16px"}}>
                             <Toman/>
                         </div>
                         <div className="g-newPrize">

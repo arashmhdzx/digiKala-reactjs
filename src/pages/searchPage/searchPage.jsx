@@ -14,10 +14,10 @@ import { ReactComponent as Star } from '../../icons/star.svg'
 import { ReactComponent as Toman } from '../../icons/Toman.svg'
 
 import './style.css'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 
 const SearchPage = () => {
-
+    var { userSearch } = useParams();
     const [data, setData] = useState([])
 
     const [dropdown, setDropdown] = useState(false)
@@ -29,9 +29,9 @@ const SearchPage = () => {
     const [toggle, setToggle] = useState(false)
     const [toggle2, setToggle2] = useState(false)
     const [toggle3, setToggle3] = useState(false)
-
+    console.log(userSearch);
     useEffect(() => {
-        getAllresult("laptop").then(
+        getAllresult(userSearch).then(
             res => setData(res.slice(0, 13))
         )
     }, [])
