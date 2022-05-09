@@ -1,37 +1,43 @@
 import React from 'react'
+import { EngTofaNum ,NumberWithCommas } from '../../../utils/numberTools';
+import { ReactComponent as Toman } from '../../../icons/Toman.svg';
+// import Countdown from 'react-countdown';
 import './style.css'
 
-const recommendHomeCart = ({ imageLink ,isFullWidth , newPrize , oldPrize , isOffer, link , discription , percent }) => {
 
-    const e2p = (num) => num.replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
-    
-    
+const RecommendHomeCart = ({ imageLink ,isFullWidth , price , oldPrice , link , discription , discount }) => {
+
+    // const e2p = (num) => num.replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+
     return (
         
-        <div className="minCart" style={{width : isFullWidth && "98%"}} >
+        <a key={link} href={`/products/dkp-${link}`} className="minCart" style={{width : isFullWidth && "98%"}} >
             
-            <a href={link}  >
+            <div   >
                 <div className="g-minCart minCart-wrapper">
                     <div className="g-Image-container">
-                        <img src={imageLink} alt={""} className="cartImage" loading="lazy" />
+                        <img src={imageLink} alt={discription} className="cartImage" loading="lazy" />
                     </div>
+                    {/* <Countdown date={Date("2022-03-20")} /> */}
                     <div className="g-discription-row">{discription}</div>
-                    <div className="g-prize-row">
-                        {isOffer ? <div className="g-oldPrize-container">
-                            <div className="g-offerDiscount">{`${e2p(percent)}٪`} </div>
-                            <div className="g-oldPrize">{e2p(oldPrize)}</div>
-                        </div> : null}
-                        <div className="g-newPrize-container">
-                            <span className="">تومان</span>
-                            <div className="g-newPrize">
-                                {isOffer ? `${e2p(newPrize)}` : `${e2p(oldPrize)}` }
-                            </div>
+                    <div className="g-newPrize-container ai-center">
+                        <div className="flex ai-center" style={{width:"16px"}}>
+                            <Toman/>
+                        </div>
+                        <div className="g-newPrize">
+                            {EngTofaNum(NumberWithCommas(price))}
                         </div>
                     </div>
+                    <div className="g-prize-row">
+                        {oldPrice && <div className="g-oldPrize-container">
+                            <div className="g-offerDiscount">{`${EngTofaNum(discount)}٪`} </div>
+                            <div className="g-oldPrize">{EngTofaNum(NumberWithCommas(oldPrice))}</div>
+                        </div> }
+                    </div>
                 </div>
-            </a>
-        </div>
+            </div>
+        </a>
     )
 }
 
-export default recommendHomeCart
+export default RecommendHomeCart

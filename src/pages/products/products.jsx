@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from './style.module.css';
 import Carousel from 'react-elastic-carousel'
 
@@ -9,8 +10,8 @@ import Footer from '../../components/Footer/footer'
 import minDatas from '../../data/minDatas.json'
 import supportLinks from './link.json'
 
-import { AddProduct } from '../../api/production';
-import engToPer from '../../utils/engTofaNum';
+import { getProduct, getSlideProduct } from '../../api/productionApi';
+import { EngTofaNum, NumberWithCommas } from '../../utils/numberTools';
 
 import { ReactComponent as Plus } from '../../components/header/downerHeader/icons/plus.svg';
 import { ReactComponent as LeftArrow } from './icons/leftArrow.svg';
@@ -30,70 +31,69 @@ import { ReactComponent as Done } from './icons/done.svg'
 
 const Products = () => {
 
+    var { productId } = useParams();
+
     const colorSelectHandler = (id) => {
-        console.log(id);
         setSelectedBox(id);
     }
 
+    const renderCounter = useRef(0);
+    renderCounter.current = renderCounter.current + 1;
+    console.log(renderCounter);
+
+    const [data, setData] = useState()
+    const [category, setCategory] = useState("")
+    const [slideData, setSlideData] = useState([])
+    console.log(data?.colorData);
+
+    function fetchingProgress(res) {
+        setData(res);
+        setCategory(res.category)
+    }
+
+    useEffect(() => {
+        getProduct(productId)
+            .then(res => fetchingProgress(res));
+        getSlideProduct(category)
+            .then(res => setSlideData(res.slice(0, 12)))
+        document.title = data?.title
+    }, [])
 
 
     const slash = <span className={styled.slash}>/</span>
-
     const line = <div className={styled.line} />
-    const brand = "شیائومی";
-    const price = "985,000"
-    const brand_category = "ساعت هوشمند شیائومی";
-
     const ThreeDotsIcon = <svg width="24px" height="24px" fill="rgb(66,71,80)"><svg id="moreHoriz" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M16 12c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zm-4-2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-8 2c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2z" clip-rule="evenodd"></path></svg></svg>
     const thumbsUp = <svg width="16px" height="16px" fill='#4caf50' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M7.5 8l3.15-4.2a4.5 4.5 0 013.6-1.8 2.483 2.483 0 012.449 2.89L16.18 8h2.424a3 3 0 012.951 3.537l-.974 5.357A5 5 0 0115.661 21h-6.55c-.148 0-.294-.033-.428-.096l-.824-.39A1 1 0 017 21H3a1 1 0 01-1-1V9a1 1 0 011-1h4.5zm.5 2v8.367L9.336 19h6.326a3 3 0 002.951-2.463l.974-5.358A1 1 0 0018.603 10H15a1 1 0 01-.986-1.164l.712-4.274A.482.482 0 0014.25 4a2.5 2.5 0 00-2 1L8.8 9.6a1 1 0 01-.8.4zm-2 0H4v9h2v-9z" clip-rule="evenodd"></path></svg>
     const dot = <svg width="16px" height="16px" fill="#e0e0e2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><circle cx="8" cy="8" r="2"></circle></svg>
     const plusDot = <svg width="16px" height="16px" fill="#a6358a" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><circle cx="8" cy="8" r="2"></circle></svg>
-    const colorData = [{ "212121": "مشکی" }, { "fff": "سفید" }, { "dedede": "نقره ای" }, { "40aaff": "آبی روشن" }]
-    const attributes = [{ "رزولوشن": "صفحه نمایش" }, { "نوع کاربری": "روزمره، ورزشی" }, { "فرم صفحه": "بیضی" }, { "جنس بند": "سیلیکون" }]
 
-    const [selectedBox, setSelectedBox] = useState(colorData[0])
+    const [selectedBox, setSelectedBox] = useState({})
     const [quantity, setQuantity] = useState(0)
-    const productData = { id: "dk-123321", quantity: quantity, color: selectedBox, price: price }
+    const productData = { id: productId, quantity: quantity, color: selectedBox, price: data?.price }
+
     const moreImage = [
-        {
-            image: "https://dkstatics-public.digikala.com/digikala-products/fff3cfce14bdfdbf23eb263fb184c88620c1ec37_1619901421.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90"
-        },
-        {
-            image: "https://dkstatics-public.digikala.com/digikala-products/fff3cfce14bdfdbf23eb263fb184c88620c1ec37_1619901421.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90"
-        },
-        {
-            image: "https://dkstatics-public.digikala.com/digikala-products/fff3cfce14bdfdbf23eb263fb184c88620c1ec37_1619901421.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90"
-        },
-        {
-            image: "https://dkstatics-public.digikala.com/digikala-products/fff3cfce14bdfdbf23eb263fb184c88620c1ec37_1619901421.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90"
-        },
-        {
-            image: "https://dkstatics-public.digikala.com/digikala-products/fff3cfce14bdfdbf23eb263fb184c88620c1ec37_1619901421.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90"
-        },
-        {
-            image: "https://dkstatics-public.digikala.com/digikala-products/fff3cfce14bdfdbf23eb263fb184c88620c1ec37_1619901421.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90"
-        },
-        {
-            image: "https://dkstatics-public.digikala.com/digikala-products/fff3cfce14bdfdbf23eb263fb184c88620c1ec37_1619901421.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90"
-        }
+        { image: "https://dkstatics-public.digikala.com/digikala-products/fff3cfce14bdfdbf23eb263fb184c88620c1ec37_1619901421.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" },
+        { image: "https://dkstatics-public.digikala.com/digikala-products/fff3cfce14bdfdbf23eb263fb184c88620c1ec37_1619901421.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" },
+        { image: "https://dkstatics-public.digikala.com/digikala-products/fff3cfce14bdfdbf23eb263fb184c88620c1ec37_1619901421.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" },
+        { image: "https://dkstatics-public.digikala.com/digikala-products/fff3cfce14bdfdbf23eb263fb184c88620c1ec37_1619901421.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" },
+        { image: "https://dkstatics-public.digikala.com/digikala-products/fff3cfce14bdfdbf23eb263fb184c88620c1ec37_1619901421.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" },
+        { image: "https://dkstatics-public.digikala.com/digikala-products/fff3cfce14bdfdbf23eb263fb184c88620c1ec37_1619901421.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" },
+        { image: "https://dkstatics-public.digikala.com/digikala-products/fff3cfce14bdfdbf23eb263fb184c88620c1ec37_1619901421.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" }
     ]
-
-
-
     return <>
         <Navbar />
         <div className={styled.container}>
             <div className={styled.sp_20}>
                 <div className={styled.productContent}>
-                    <p className={styled.pathText}>دیجی‌کالا{slash}کالای دیجیتال{slash}ساعت و مچ بند هوشمند{slash}مچ بند هوشمند</p>
+                    <p className={styled.pathText}>دیجی‌کالا{slash}کالای دیجیتال{slash}{data?.brandCategory.split(' ').slice(0, 2).join(' ')}{slash}{data?.brandCategory}</p>
                     <div className={styled.d_flex}>
                         <div className={styled.productImageConrainer}>
-                            <img style={{ width: "90%" }} src="https://dkstatics-public.digikala.com/digikala-products/3ae838864ed3a2ec364f28e70bf2da22def4f1fd_1619901420.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" alt="مچ بند هوشمند شیائومی مدل Mi Band 6 Global Version" />
+                            <img style={{ width: "90%" }} src={data?.mainImage} alt={data?.title} />
                             <div className={styled.productMoreImage}>
                                 {moreImage.map((item, index) => (index < 6 &&
                                     <div className={`${styled.moreImageBoxContainer} ${index === 5 && styled.flex_ai}`}>
                                         <div key={index} className={`${styled.moreImage} ${index === 5 && styled.moreImageBlur}`}>
-                                            <img width="72px" height="72px" src={item.image} alt="مچ بند هوشمند شیائومی مدل Mi Band 6 Global Version" />
+                                            <img width="72px" height="72px" src={item.image} alt={data?.title} />
                                         </div>
                                         {index === 5 &&
                                             <div className={styled.flexabs}>
@@ -109,14 +109,14 @@ const Products = () => {
                         <div className={styled.flex_g}>
 
                             <div>
-                                {brand &&
+                                {data?.brand &&
                                     <div>
-                                        <a href="/brand" className={styled.brand} >{brand}</a>
+                                        <a href="/brand" className={styled.brand} >{data?.brand}</a>
                                         {slash}
-                                        <a href="/brand/" className={styled.brand} >{brand_category}</a>
+                                        <a href="/brand/" className={styled.brand} >{data?.brandCategory}</a>
                                     </div>
                                 }
-                                <h3>مچ بند هوشمند شیائومی مدل Mi Band 6 Global Version</h3>
+                                <h3>{data?.title}</h3>
                             </div>
                             <div className={styled.infoSection} style={{ paddingTop: "16px" }}>
                                 <div className={styled.flex_col} style={{ width: "100%", padding: "0 10px" }}>
@@ -125,62 +125,69 @@ const Products = () => {
                                         <div className={`${styled.flex_row} ${styled.ai_center} `} style={{ marginTop: "8px" }}>
                                             <div className={`${styled.flex_row} ${styled.ai_center}`}>
                                                 <img src="https://www.digikala.com/statics/img/png/star-yellow.png" alt="" />
-                                                <div className={styled.reviewAvg}>{engToPer(4.4)}</div>
-                                                <div className={styled.reviewsQuantity}>{engToPer("(85)")}</div>
+                                                <div className={styled.reviewAvg}>{EngTofaNum(4.4)}</div>
+                                                <div className={styled.reviewsQuantity}>{EngTofaNum("(85)")}</div>
 
                                             </div>
                                             {dot}
                                             <div className={styled.reviewAvg} style={{ color: "#19bfd3" }} >
-                                                {engToPer(8500)} دیدگاه
+                                                {EngTofaNum(8500)} دیدگاه
                                             </div>
                                             {dot}
                                             <div className={styled.reviewAvg} style={{ color: "#19bfd3" }} >
-                                                {engToPer(69)} پرسش
+                                                {EngTofaNum(69)} پرسش
                                             </div>
 
                                         </div>
                                         <div className={`${styled.flex_row} ${styled.ai_center} ${styled.reviewAvg}`} style={{ marginTop: "16px", padding: "0" }}>
                                             {thumbsUp}
                                             <p className={`${styled.flex_row} ${styled.ai_center}`} >
-                                                {engToPer("85%")}
-                                                <p className={`${styled.reviewsQuantity} ${styled.p_r8}`}>{engToPer('(999)')}</p>
+                                                {EngTofaNum("85%")}
+                                                <p className={`${styled.reviewsQuantity} ${styled.p_r8}`}>{EngTofaNum('(648)')}</p>
                                                 نفر از خریداران، این کالا را پیشنهاد کرده اند
                                             </p>
                                         </div>
                                     </div>
                                     <div className={`${styled.flex_col} ${styled.p_c12}`}>
-                                        <h3 className={` ${styled.p_c12}`} style={{ paddingTop: "16px" }}>رنگ: {Object.values(selectedBox)}</h3>
-                                        <div className={`${styled.flex_row} ${styled.p_c8} ${styled.flex_wrap} color-container`} style={{ overflowX: "auto", userSelect: "none", cursor: "pointer" }}>
-                                            {
+                                        {data?.colorData &&
+                                            <>
+                                                <h3 className={` ${styled.p_c12}`} style={{ paddingTop: "16px" }}>رنگ: {Object.values(selectedBox)}</h3>
+                                                <div className={`${styled.flex_row} ${styled.p_c8} ${styled.flex_wrap} color-container`} style={{ overflowX: "auto", userSelect: "none", cursor: "pointer" }}>
+                                                    {
 
-                                                colorData.map((e) => (
+                                                        data?.colorData.map((e) => (
 
-                                                    <div key={Object.keys(e)} onClick={() => colorSelectHandler(e)} className={` ${styled.colorWrapper}
+                                                            <div key={Object.keys(e)} onClick={() => colorSelectHandler(e)} className={` ${styled.colorWrapper}
                                                     ${Object.keys(e)[0] == Object.keys(selectedBox)[0] ? styled.actived : ''} color-box`} >
-                                                        <div className={`${styled.color}`} style={{ backgroundColor: "#" + Object.keys(e) }} >
-                                                            {
-                                                                Object.keys(e)[0] == Object.keys(selectedBox)[0] &&
-                                                                <div className={`${styled.d_flex}`} style={{ justifyContent: "center", margin: "2px 0 0" }}>
-                                                                    <Done fill={Object.keys(e)[0] === "fff" ? "#000" : "#fff"} />
+                                                                <div className={`${styled.color}`} style={{ backgroundColor: "#" + Object.keys(e) }} >
+                                                                    {
+                                                                        Object.keys(e)[0] == Object.keys(selectedBox)[0] &&
+                                                                        <div className={`${styled.d_flex}`} style={{ justifyContent: "center", margin: "2px 0 0" }}>
+                                                                            <Done fill={Object.keys(e)[0] === "fff" ? "#000" : "#fff"} />
+                                                                        </div>
+                                                                    }
                                                                 </div>
-                                                            }
-                                                        </div>
-                                                    </div>
-                                                ))
-                                            }
-                                        </div>
+                                                            </div>
+                                                        ))
+                                                    }
+                                                </div>
+                                            </>
+                                        }
                                     </div>
-                                    <div className={`${styled.flex_col} ${styled.p_c12} ${styled.border_buttom}`}>
-                                        <h3 className={` ${styled.p_c12}`} style={{ paddingTop: "16px" }}>ویژگی ها</h3>
-                                        <div className={`${styled.flex_col}`} style={{ userSelect: "none" }}>
-                                            {
-                                                attributes.map((e) => (
-                                                    <li className={` ${styled.ul} ${styled.ai_center} ${styled.p_c4}`} >
-                                                        <span className={styled.reviewsQuantity} style={{ fontSize: "1rem" }}>{Object.keys(e)[0] + " : "}</span><span style={{ color: "#424750" }}>{Object.values(e)[0]}</span>
-                                                    </li>
-                                                ))
-                                            }
-                                        </div>
+                                    <div className={`${styled.flex_col} ${styled.mh_100} ${styled.p_c12} ${styled.border_buttom}`}>
+                                        {data?.attributes &&
+                                            <>
+                                                <h3 className={` ${styled.p_c12}`} style={{ paddingTop: "16px" }}>ویژگی ها</h3>
+                                                <div className={`${styled.flex_col}`} style={{ userSelect: "none" }}>
+                                                    {
+                                                        data?.attributes.map((e) => (
+                                                            <li className={` ${styled.ul} ${styled.ai_center} ${styled.p_c4}`} >
+                                                                <span className={styled.reviewsQuantity} style={{ fontSize: "1rem" }}>{Object.keys(e)[0] + " : "}</span><span style={{ color: "#424750" }}>{Object.values(e)[0]}</span>
+                                                            </li>
+                                                        ))
+                                                    }
+                                                </div>
+                                            </>}
                                     </div>
                                     <div className={`${styled.flex_row} ${styled.ai_center} ${styled.p_c12}`}>
                                         <div className={`${styled.d_flex} ${styled.p_r8} ${styled.ai_center} `}><Info /></div>
@@ -218,7 +225,7 @@ const Products = () => {
                                     <div className={`${styled.border} ${styled.buyBg}`}>
                                         <div className={`${styled.flex_row} ${styled.ai_center}`} style={{ padding: "12px 20px", justifyContent: "space-between" }}>
                                             <h4 style={{ fontWeight: "500" }}>فروشنده</h4>
-                                            <p className={styled.reviewAvg} style={{ color: "#19bfd3", fontSize: ".8rem", fontWeight: "600" }}>{engToPer(14)} فروشنده دیگر</p>
+                                            <p className={styled.reviewAvg} style={{ color: "#19bfd3", fontSize: ".8rem", fontWeight: "600" }}>{EngTofaNum(14)} فروشنده دیگر</p>
                                         </div>
                                         <div className={`${styled.p_r16} ${styled.flex_col}`}>
                                             <div className={`${styled.p_c12}  ${styled.flex_col}`}>
@@ -259,7 +266,7 @@ const Products = () => {
                                             {line}
                                             <div className={`${styled.p_c12}  ${styled.flex_col}`} >
                                                 <div className={`${styled.d_flex} ${styled.ai_center} ${styled.p_c12} `} style={{ justifyContent: "flex-end" }}>
-                                                    <h3 className={styled.p_r8}>{engToPer(price)}</h3>
+                                                    <h3 className={styled.p_r8}>{data?.price && EngTofaNum(NumberWithCommas(data?.price))}</h3>
                                                     <Toman />
                                                 </div>
                                                 {
@@ -274,7 +281,7 @@ const Products = () => {
                                                                 <div onClick={() => setQuantity(prev => prev + 1)} className={`${styled.d_flex} ${styled.ai_center}`}>
                                                                     <Add />
                                                                 </div>
-                                                                <span className={`${styled.d_flex} ${styled.ai_center}`}>{engToPer(quantity)}</span>
+                                                                <span className={`${styled.d_flex} ${styled.ai_center}`}>{EngTofaNum(quantity)}</span>
                                                                 <div className={`${styled.flex_row} ${styled.ai_center}`}>
                                                                     {
                                                                         quantity > 1 ?
@@ -351,10 +358,13 @@ const Products = () => {
                         <div className="RH-Slider">
 
                             <Carousel isRTL={true} itemsToShow={5} itemsToScroll={4} itemPadding={[0, 5, 0, 5]} verticalMode={false}>
-                                {minDatas.map(data => (
-                                    <RecommendHomeCart isFullWidth={false} link={data.link} imageLink={data.imageLink} newPrize={data.newPrize}
-                                        oldPrize={data.oldPrize} percent={data.percent} isOffer={data.isOffer} discription={data.discription} />
-                                ))}
+                                {
+                                    slideData?.map(data => (
+                                        <RecommendHomeCart isFullWidth={true} link={data.id} imageLink={data.mainImage} price={data.price}
+                                            oldPrice={data.oldPrice} discount={data.discount} isOffer={data.isOffer} discription={data.title} />
+                                    ))
+                                }
+
                             </Carousel>
 
                         </div>
@@ -363,36 +373,60 @@ const Products = () => {
                 <div className={styled.flex_col}>
                     <div className={`${styled.d_flex} ${styled.p_r8} ${styled.border_bottom}`} style={{ position: "sticky", top: "82px", zIndex: "1", backgroundColor: "#fff" }}>
                         <div className={`${styled.flex_row} ${styled.p_c12}`}>
-                            <div className={styled.p_r8}>معرفی</div>
-                            <div className={styled.p_r8}>بررسی تخصصی</div>
+                            {data?.intro && <div className={styled.p_r8}>معرفی</div>}
+                            {data?.overView && <div className={styled.p_r8}>دیدگاه کلی</div>}
+                            {data?.addictionalDisc && <div className={styled.p_r8}>بررسی تخصصی</div>}
                             <div className={styled.p_r8}>مشخصات</div>
                             <div className={styled.p_r8}>دیدگاه‌ها</div>
                         </div>
                     </div>
                     <div className={styled.flex_row}>
                         <div className={styled.flex_col}>
-                            <div className={`${styled.border_bottom4} ${styled.flex_col}`} style={{ padding: "24px 0" }}>
-                                <div className={styled.p_c8} style={{ width: "fit-content" }}>
-                                    <h4 className={styled.p_c8} style={{ fontWeight: "500", borderBottom: "3px solid rgb(239, 64, 86)" }}>معرفی</h4>
-                                </div>
-                                <p className={styled.discriptionText} >
-                                    مچ بند می بند 6، همه انتظارات ما را از نسل جدید می بندها را برآورده کرد. همانطور که اطلاع دارید، می بندهای شیائومی به قیمت مناسب و ارائه امکانات درخور توجه مشهور هستند و لمس مستقیم تکنولوژی را برای مخاطبان خود میسر کرده‌اند. البته انقلابی که شیائومی در می بند 6 به راه انداخت، جلوه ای دست و دلبازانه از تکنولوژی گجت های پوشیدنی بود که می بند 5 را تکمیل کرده و پشت سر گذاشت. افزایش سایز نمایشگر با نرخ 50 درصد، برخورداری از سنسور اکسیژن خون، پشتیبانی از 30 فعالیت ورزشی و پشتیبانی از دستیار صوتی الکسا موثرترین گام‌های شیائومی در می بند 6 نسبت به نسل قبل محسوب می‌شود.
-                                </p>
-                            </div>
-                            <div className={`${styled.border_bottom4} ${styled.flex_col}`} style={{ padding: "24px 0" }}>
-                                <div className={styled.p_c8} style={{ width: "fit-content" }}>
-                                    <h4 className={styled.p_c8} style={{ fontWeight: "500", borderBottom: "3px solid rgb(239, 64, 86)" }}>بررسی تخصصی</h4>
-                                </div>
-                                <div className={styled.flex_row}>
-                                    <div className={styled.flex_col} >
-                                        <h4 className={styled.p_c12} style={{ fontWeight: "500" }}>برترین دستبند هوشمند جهان</h4>
-                                        <p className={styled.discriptionText} style={{ lineHeight: "2rem" }}> بدون شک در عرصه دست‌بند‌های هوشمند، شیائومی توانست عملکرد بسیار عالی را به‌نمایش بگذارد. تجلی عملکرد شیائومی با معرفی دستبند هوشمند Mi Band 5 بود که به نسبت نسل قبلی خودش به صفحه‌نمایش بزرگتری مجهز شده بود. این دستبند هوشمند توانست با قابلیت‌های بسیار جذاب و البته قیمت مقرون به‌صرفه‌ای که داشت، لقب پرفروش‌ترین دستبند هوشمند جهان را به خودش اختصاص داد. اما نوبت به نسل جدید رسید و شاهد رونمایی شیائومی Mi Band 6 بودیم که به نسبت Mi Band 5 به مشخصات فنی قدرتمند‌تر و قابلیت‌های جذاب‌تری مجهز شده است. در نگاه اولیه طراحی در نظر گرفته شده برای این دستبند هوشمند تفاوتی با نسل قبلی ندارد. در قسمت پشتی اما سنسور‌های جدیدی به نسبت نسل قبلی برای این دستبند هوشمند در نظر گرفته شده که در ادامه به آن‌ها خواهیم پرداخت. درون جعبه این محصول هم دستبند هوشمند، دستبند و شارژر مغناطیسی قرار گرفته است. در قسمت‌های کناری صفحه‌نمایش هم خمیدگی‌های بسیار جذابی را شاهد هستیم که سبب شده تا با صفحه‌نمایش یکدست‌تر و زیبا‌تری رو‌به‌رو باشیم. همانطور که اشاره داشتیم، Mi Band 6 به صفحه‌نمایش با ابعاد بزرگتری به نسبت Mi Band 5 مجهز شده است و اما نکته جالب توجه وزن تقریبا مشابه 12.8 گرم با Mi Band 5 (وزن 12 گرم) است.</p>
+                            {
+                                data?.intro &&
+                                <div className={`${styled.border_bottom4} ${styled.flex_col}`} style={{ padding: "24px 0" }}>
+                                    <div className={styled.p_c8} style={{ width: "fit-content" }}>
+                                        <h4 className={styled.p_c8} style={{ fontWeight: "500", borderBottom: "3px solid rgb(239, 64, 86)" }}>معرفی</h4>
                                     </div>
-                                    <div style={{ marginRight: "16px" }}>
-                                        <img src="https://dkstatics-public.digikala.com/digikala-reviews/c33340d760f558d6b52e8a5437976664fb693840_1635662780.jpg?x-oss-process=image/quality,q_70" alt="مچ بند شیاومی mi 6" />
+                                    <p className={styled.discriptionText} style={{ lineHeight: "2rem" }} >
+                                        {data?.intro}
+                                    </p>
+                                </div>
+                            }
+                            {
+                                data?.addictionalDisc &&
+                                <div className={`${styled.border_bottom4} ${styled.flex_col}`} style={{ padding: "24px 0" }}>
+                                    <div className={styled.p_c8} style={{ width: "fit-content" }}>
+                                        <h4 className={styled.p_c8} style={{ fontWeight: "500", borderBottom: "3px solid rgb(239, 64, 86)" }}>بررسی تخصصی</h4>
+                                    </div>
+                                    <div className={styled.flex_row}>
+
+                                        {/* // data?.addictionalDisc.map((el,index) => ( */}
+                                        <div className={styled.flex_col} >
+                                            <h4 className={styled.p_c12} style={{ fontWeight: "500" }}>{console.log(Object.values(data?.addictionalDisc[1]))}</h4>
+                                            <p className={styled.discriptionText} style={{ lineHeight: "2rem" }}>{Object.values(data?.addictionalDisc[2])}</p>
+                                        </div>
+                                        <div style={{ marginRight: "16px" }}>
+                                            <img style={{ width: "400px", height: "400px" }} src={Object.values(data?.addictionalDisc[0])} alt={data?.title} />
+                                        </div>
+                                        {/* // )) */}
+
                                     </div>
                                 </div>
-                            </div>
+                            }
+                            {
+                                data?.overView &&
+                                <div className={`${styled.border_bottom4} ${styled.flex_col}`} style={{ padding: "24px 0" }}>
+                                    <div className={styled.p_c8} style={{ width: "fit-content" }}>
+                                        <h4 className={styled.p_c8} style={{ fontWeight: "500", borderBottom: "3px solid rgb(239, 64, 86)" }}>معرفی کلی</h4>
+                                    </div>
+                                    <div className={`${styled.flex_ai}`}>
+                                        <div className={styled.flex_row}>
+                                            <img style={{ width: "100%" }} src={data?.overView} alt={data?.title} />
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                             <div className={`${styled.border_bottom4} ${styled.flex_col}`} style={{ padding: "24px 0" }}>
                                 <div className={styled.p_c8} style={{ width: "fit-content" }}>
                                     <h4 className={styled.p_c8} style={{ fontWeight: "500", borderBottom: "3px solid rgb(239, 64, 86)" }}>مشخصات</h4>
@@ -402,36 +436,23 @@ const Products = () => {
                                         <h4 className={styled.p_c12} style={{ fontWeight: "500" }}>مشخصات</h4>
                                     </div>
                                     <div className={`${styled.flex_col} `} style={{ width: "100%" }}>
-                                        <div className={`${styled.flex_col} attr`} style={{ width: "100%" }}>
-                                            <div className={`${styled.flex_row} `}>
-                                                <p className={`${styled.reviewsQuantity} ${styled.p_c12} ${styled.p_r8}`} style={{ width: "200px", marginLeft: "16px", fontSize: "1rem" }}>{"نوع باتری" + " : "}</p>
-                                                <p className={`${styled.discriptionText} ${styled.p_c12} ${styled.border_bottom}`} style={{ width: "100%" }}>لیتیوم پلیمری</p>
-                                            </div>
-                                        </div>
-                                        <div className={`${styled.flex_col} attr`} style={{ width: "100%" }}>
-                                            <div className={`${styled.flex_row} `}>
-                                                <p className={`${styled.reviewsQuantity} ${styled.p_c12} ${styled.p_r8}`} style={{ width: "200px", marginLeft: "16px", fontSize: "1rem" }}>{"تراکم پیکسلی صفحه نمایش" + " : "}</p>
-                                                <p className={`${styled.discriptionText} ${styled.p_c12} ${styled.border_bottom}`} style={{ width: "100%" }}>۳۲۶ پیکسل بر اینچ</p>
-                                            </div>
-                                        </div>
-                                        <div className={`${styled.flex_col} attr`} style={{ width: "100%" }}>
-                                            <div className={`${styled.flex_row} `}>
-                                                <p className={`${styled.reviewsQuantity} ${styled.p_c12} ${styled.p_r8}`} style={{ width: "200px", marginLeft: "16px", fontSize: "1rem" }}>{"رزولوشن صفحه نمایش" + " : "}</p>
-                                                <p className={`${styled.discriptionText} ${styled.p_c12} ${styled.border_bottom}`} style={{ width: "100%" }}>۴۸۶x۱۵۲</p>
-                                            </div>
-                                        </div>
-                                        <div className={`${styled.flex_col} attr`} style={{ width: "100%" }}>
-                                            <div className={`${styled.flex_row} `}>
-                                                <p className={`${styled.reviewsQuantity} ${styled.p_c12} ${styled.p_r8}`} style={{ width: "200px", marginLeft: "16px", fontSize: "1rem" }}>{"نوع صفحه نمایش" + " : "}</p>
-                                                <p className={`${styled.discriptionText} ${styled.p_c12} ${styled.border_bottom}`} style={{ width: "100%" }}>AMOLED</p>
-                                            </div>
-                                        </div>
-                                        <div className={`${styled.flex_col} attr`} style={{ width: "100%" }}>
-                                            <div className={`${styled.flex_row} `}>
-                                                <p className={`${styled.reviewsQuantity} ${styled.p_c12} ${styled.p_r8}`} style={{ width: "200px", marginLeft: "16px", fontSize: "1rem" }}>{"اتصالات" + " : "}</p>
-                                                <p className={`${styled.discriptionText} ${styled.p_c12}`} style={{ width: "100%" }}>Bluetooth</p>
-                                            </div>
-                                        </div>
+                                        {
+                                            data?.uniqueAttr.map((el, index) => (
+                                                <div key={index} className={`${styled.flex_col} attr`} style={{ width: "100%" }}>
+                                                    <div className={`${styled.flex_row} `}>
+                                                        <p className={`${styled.reviewsQuantity} ${styled.p_c12} ${styled.p_r8}`} style={{ width: "200px", marginLeft: "16px", fontSize: "1rem" }}>{Object.keys(el)[0]}</p>
+                                                        <p className={`${styled.discriptionText} ${styled.flex_col} ${styled.p_c12} ${styled.border_bottom}`} style={{ width: "100%" }}>
+                                                            {
+                                                                Object.values(el)?.map(el => (
+                                                                    <>
+                                                                        <div>{el + "\n"}</div> 
+                                                                    </>
+                                                                ))
+                                                            }</p>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -440,7 +461,6 @@ const Products = () => {
                                     <h4 className={styled.p_c8} style={{ fontWeight: "500", borderBottom: "3px solid rgb(239, 64, 86)" }}>دیدگاه‌ها</h4>
                                 </div>
                                 <p className={styled.discriptonText}>
-
                                 </p>
                             </div>
 
@@ -450,9 +470,9 @@ const Products = () => {
                             <div className={`${styled.p_c12}`} style={{ position: "sticky", top: "132px", maxWidth: "336px" }}>
                                 <div className={`${styled.border} ${styled.stickyBox_bg} ${styled.flex_col}`} style={{ padding: "16px" }}>
                                     <div className={styled.flex_row}>
-                                        <img width="80px" height="80px" src="https://dkstatics-public.digikala.com/digikala-products/3ae838864ed3a2ec364f28e70bf2da22def4f1fd_1619901420.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" alt="مچ بند هوشمند شیائومی مدل Mi Band 6 Global Version" />
+                                        <img width="80px" height="80px" src={data?.mainImage} alt={data?.title} />
                                         <div className={styled.flex_col} style={{ marginRight: "20px" }}>
-                                            <p className={styled.discriptionText} style={{ fontSize: ".8rem" }}>مچ بند هوشمند شیائومی مدل Mi Band 6 Global Version</p>
+                                            <p className={styled.discriptionText} style={{ fontSize: ".8rem" }}>{data?.title}</p>
                                             <div className={`${styled.flex_row} ${styled.ai_center}`} >
                                                 <div className={styled.selectedColor} style={{ backgroundColor: "#" + Object.keys(selectedBox) }}></div>
                                                 <p className={`${styled.p_r8} ${styled.discriptionText}`}>{Object.values(selectedBox)}</p>
@@ -478,7 +498,7 @@ const Products = () => {
                                     <div>
                                         <div className={`${styled.p_c12}  ${styled.flex_col}`} >
                                             <div className={`${styled.d_flex} ${styled.ai_center} ${styled.p_c12} `} style={{ justifyContent: "flex-end" }}>
-                                                <h3 className={styled.p_r8}>{engToPer("985,000")}</h3>
+                                                <h3 className={styled.p_r8}>{data?.price && EngTofaNum(NumberWithCommas(data?.price))}</h3>
                                                 <Toman />
                                             </div>
                                             {
@@ -493,7 +513,7 @@ const Products = () => {
                                                             <div onClick={() => setQuantity(prev => prev + 1)} className={`${styled.d_flex} ${styled.ai_center}`}>
                                                                 <Add />
                                                             </div>
-                                                            <span className={`${styled.d_flex} ${styled.ai_center}`}>{engToPer(quantity)}</span>
+                                                            <span className={`${styled.d_flex} ${styled.ai_center}`}>{EngTofaNum(quantity)}</span>
                                                             <div className={`${styled.flex_row} ${styled.ai_center}`}>
                                                                 {
                                                                     quantity > 1 ?

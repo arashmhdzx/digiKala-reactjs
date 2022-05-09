@@ -16,7 +16,8 @@ import PrivateRoute from './routes/PrivateRoute.jsx';
 import PublicRoute from './routes/PublicRoute.jsx';
 import Profile from './pages/profile/profile.jsx';
 import Products from './pages/products/products.jsx';
-
+import DataEditor from './data/dataEditor.js';
+import SearchPage from './pages/searchPage/searchPage.jsx';
 
 const AppRoutes = () => {
     const dispatch = useDispatch();
@@ -39,6 +40,9 @@ const AppRoutes = () => {
                     <Route path="/" exact element={<PublicRoute restricted={false}>
                         <MainPage />
                     </PublicRoute> } />
+                    <Route path="/DataEditor" exact element={<PublicRoute restricted={false}>
+                        <DataEditor />
+                    </PublicRoute> } />
                     <Route path="/user/login-register" element={ <PublicRoute restricted={true}>
                         <LoginPage />
                     </PublicRoute> } />
@@ -54,8 +58,11 @@ const AppRoutes = () => {
                     <Route path="/profile" element={ <PrivateRoute>
                         <Profile />
                     </PrivateRoute> } />
-                    <Route path="/products" element={<PublicRoute restricted={false}>
+                    <Route path="/products/dkp-:productId" element={<PublicRoute restricted={false}>
                         <Products />
+                    </PublicRoute> } />
+                    <Route path="/products/q=:userSearch" element={<PublicRoute restricted={false}>
+                        <SearchPage />
                     </PublicRoute> } />
                     
                     {/* <PublicRoute restricted={false} component={ <MainPage/>} path="/" exact />

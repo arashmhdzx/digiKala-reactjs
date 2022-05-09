@@ -1,0 +1,152 @@
+.p-nb {
+    padding-top: 127px;
+}
+
+.px-24 {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.pt-24 {
+    padding-top: 24px;
+}
+
+.search-sb-container {
+    min-width: 300px;
+    width: 300px;
+    border: 1px solid #e0e0e2;
+    border-radius: 8px;
+    height: fit-content;
+}
+
+.search-sb {
+    padding: 5px 24px;
+}
+
+.filters-items {
+    display: flex;
+    color: #424750;
+    justify-content: space-between;
+    font-size: medium;
+    font-weight: 500;
+    line-height: 2.7rem;
+    padding: 5px;
+    align-items: center;
+}
+
+.border-b:not(:last-child) {
+    border-bottom: 1px solid #f0f0f1;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.filter-header {
+    font-size: larger;
+    font-weight: 500;
+    padding: 16px 20px;
+}
+
+.results {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.results-cart {
+    padding: 12px 8px;
+    
+}
+.p-result-cart{
+    width: 22%;
+    
+}
+.p-result-cart:hover{
+    z-index: 1;
+    box-shadow: 0 1px 5px rgba(0,0,0,20%);
+}
+
+.results-title {
+    color: #424750;
+    font-size: 15px;
+    font-weight: 600;
+    padding-bottom: 15px;
+}
+
+.ju-bet {
+    justify-content: space-between;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.font-500 {
+    color: #62666d;
+    font-size: smaller;
+    font-weight: 400;
+}
+
+#star-icon {
+    fill: #f9bc00;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+}
+
+.ai-center {
+    align-items: center;
+}
+
+.font-num {
+    font-size: 15px;
+    color:#424750;
+    font-weight:500
+}
+
+.border-t{
+    border-top: 1px solid #f0f0f1;
+    
+}
+.border-r{
+    border-right: 1px solid #f0f0f1;
+}
+.ju-center{
+    justify-content: center;
+}
+.border-r:nth-child(4*(n-1)+1){
+    border-right: none;
+}
+.discount-bg{
+    padding: 0 4px;
+    background-color: #ef394e;
+    border-radius: 16px;
+    color: #fff;
+    width: 34px;
+    height: 20px;
+}
+.pr-26{
+    padding-right: 26px;
+}
+.flex-end{
+    justify-content: flex-end;
+}
+.line-through{
+    text-decoration: line-through;
+}
+.p-result-cart{
+    padding: 12px 8px;
+}
+.ml-24{
+    margin-left: 24px;
+}
+.w-full{
+    width: 100%;
+}
+
+.ju-end{
+    justify-content: end;
+}
+.pb-20{
+    padding-bottom: 20px;
+}

@@ -63,14 +63,14 @@ const Confirm = () => {
             // a function to update cart list
             // ...
             const notSignCart = JSON.parse(localStorage.getItem("cart"))
-            if (notSignCart !== []) {
-                var newCart = notSignCart.concat(userData[0].cart)
-                newCart = Array.from(new Set(newCart.map(a => a.id)))
-                    .map(id => {
-                        return newCart.find(a => a.id === id)
-                    })
-                localStorage.setItem("cart",JSON.stringify(newCart))
-            }
+            // if (notSignCart !== []) {
+            //     var newCart = notSignCart.concat(userData[0].cart)
+            //     newCart = Array.from(new Set(newCart.map(a => a.id)))
+            //         .map(id => {
+            //             return newCart.find(a => a.id === id)
+            //         })
+            //     localStorage.setItem("cart",JSON.stringify(newCart))
+            // }
             localStorage.setItem("token", JSON.stringify(userData[0].id));
             localStorage.setItem("user", JSON.stringify(Object.fromEntries(Object.entries(userData[0]).filter(([key]) => (!key.includes('email')
                 && !key.includes("password") && !key.includes("phoneNumber") && !key.includes("cart"))))));
