@@ -9,6 +9,12 @@ const getSlideProduct = async (e) => {
     return data
 }
 
+
+const fetchData = async () =>{
+        const { data } = await client.get("https://my-json-server.typicode.com/arash-mehdizadeh/digiKala-reactjs/db")
+        console.log(data)
+}
+
 const getProduct = async (e) => {
     const { data } = await client.get(`/products/${e}`)
     return data
